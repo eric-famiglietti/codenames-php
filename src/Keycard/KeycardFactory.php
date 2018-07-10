@@ -1,0 +1,167 @@
+<?php
+
+declare(strict_types=1);
+
+namespace Codenames\Keycard;
+
+use Codenames\Team\TeamColors;
+
+class KeycardFactory
+{
+    /** @var array */
+    const COLORS = [TeamColors::RED, TeamColors::BLUE];
+
+    /** @var int */
+    const DEFAULT_WIDTH = 5;
+
+    /** @var int */
+    const DEFAULT_HEIGHT = 5;
+
+    /** @var int */
+    const DEFAULT_VALUE = KeycardValues::BYSTANDER;
+
+    /** @var int */
+    const REDS_COUNT = 8;
+
+    /** @var int */
+    const BLUES_COUNT = 8;
+
+    /** @var int */
+    const ASSASSINS_COUNT = 1;
+
+    /**
+     * @return Keycard
+     */
+    public function makeKeycard(): Keycard
+    {
+        $color = $this->makeKeycardColor();
+        $grid = $this->makeKeycardGrid($color);
+
+        return new Keycard($color, $grid);
+    }
+
+    /**
+     * @return KeycardColor
+     */
+    private function makeKeycardColor(): KeycardColor
+    {
+        $color = self::COLORS[array_rand(self::COLORS)];
+
+        return new KeycardColor($color);
+    }
+
+    /**
+     * @param KeycardColor $color
+     * @return KeycardGrid
+     */
+    private function makeKeycardGrid(KeycardColor $color): KeycardGrid
+    {
+        $dimensions = $this->makeKeycardDimensions();
+
+        $grid = $this->makeGrid();
+        $grid = $this->populateGrid($grid, $color);
+
+        return new KeycardGrid($dimensions, $grid);
+    }
+
+    /**
+     * @return KeycardGridDimensions
+     */
+    private function makeKeycardDimensions(): KeycardGridDimensions
+    {
+        return new KeycardGridDimensions(self::DEFAULT_WIDTH, self::DEFAULT_HEIGHT);
+    }
+
+    /**
+     * @param KeycardGridDimensions $dimensions
+     * @return array
+     */
+    private function makeGrid(): array
+    {
+        $grid = [];
+
+        foreach (range(0, self::DEFAULT_WIDTH - 1) as $x) {
+            foreach (range(0, self::DEFAULT_HEIGHT - 1) as $y) {
+                $grid[$x][$y] = self::DEFAULT_VALUE;
+            }
+        }
+
+        return $grid;
+    }
+
+    /**
+     * @param KeycardColor $color
+     * @return array
+     */
+    private function populateGrid(array $grid, KeycardColor $color): array
+    {
+        $redsCount = $this->calculateRedsCount($color);
+        $bluesCount = $this->calculateBluesCount($color);
+
+        $grid = $this->placeValuesRandomly($grid, KeycardValues::RED, $redsCount);
+        $grid = $this->placeValuesRandomly($grid, KeycardValues::BLUE, $bluesCount);
+        $grid = $this->placeValuesRandomly($grid, KeycardValues::ASSASSIN, self::ASSASSINS_COUNT);
+
+        return $grid;
+    }
+
+    /**
+     * @param KeycardColor $color
+     * @return int
+     */
+    private function calculateRedsCount(KeycardColor $color): int
+    {
+        if ($color->isRed()) {
+            return self::REDS_COUNT + 1;
+        }
+
+        return self::REDS_COUNT;
+    }
+
+    /**
+     * @param KeycardColor $color
+     * @return int
+     */
+    private function calculateBluesCount(KeycardColor $color): int
+    {
+        if ($color->isBlue()) {
+            return self::BLUES_COUNT + 1;
+        }
+
+        return self::BLUES_COUNT;
+    }
+
+    /**
+     * @param array $grid
+     * @param int $value
+     * @param int $count
+     * @return array
+     */
+    private function placeValuesRandomly(array $grid, int $value, int $count): array
+    {
+        foreach (range(0, $count - 1) as $i) {
+            $grid = $this->placeValueRandomly($grid, $value);
+        }
+
+        return $grid;
+    }
+
+    /**
+     * @param array $grid
+     * @param int $value
+     * @return array
+     */
+    private function placeValueRandomly(array $grid, int $value): array
+    {
+        while (true) {
+            $x = rand(0, self::DEFAULT_WIDTH - 1);
+            $y = rand(0, self::DEFAULT_HEIGHT - 1);
+
+            if ($grid[$x][$y] === self::DEFAULT_VALUE) {
+                $grid[$x][$y] = $value;
+
+                return $grid;
+            }
+        }
+    }
+}

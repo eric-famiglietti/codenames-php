@@ -1,5 +1,7 @@
 # codenames-php
 
+[![Build Status](https://travis-ci.org/eric-famiglietti/codenames-php.svg?branch=master)](https://travis-ci.org/eric-famiglietti/codenames-php)
+
 Codenames logic implemented in PHP.
 
 ## License

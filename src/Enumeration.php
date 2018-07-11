@@ -10,6 +10,7 @@ abstract class Enumeration
 {
     /**
      * @param mixed $value
+     *
      * @return bool
      */
     public static function isValidValue($value): bool

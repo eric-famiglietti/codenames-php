@@ -52,6 +52,7 @@ class KeycardFactory
 
     /**
      * @param KeycardColor $color
+     *
      * @return KeycardGrid
      */
     private function makeKeycardGrid(KeycardColor $color): KeycardGrid
@@ -74,6 +75,7 @@ class KeycardFactory
 
     /**
      * @param KeycardGridDimensions $dimensions
+     *
      * @return array
      */
     private function makeGrid(): array
@@ -91,6 +93,7 @@ class KeycardFactory
 
     /**
      * @param KeycardColor $color
+     *
      * @return array
      */
     private function populateGrid(array $grid, KeycardColor $color): array
@@ -107,6 +110,7 @@ class KeycardFactory
 
     /**
      * @param KeycardColor $color
+     *
      * @return int
      */
     private function calculateRedsCount(KeycardColor $color): int
@@ -120,6 +124,7 @@ class KeycardFactory
 
     /**
      * @param KeycardColor $color
+     *
      * @return int
      */
     private function calculateBluesCount(KeycardColor $color): int
@@ -133,8 +138,9 @@ class KeycardFactory
 
     /**
      * @param array $grid
-     * @param int $value
-     * @param int $count
+     * @param int   $value
+     * @param int   $count
+     *
      * @return array
      */
     private function placeValuesRandomly(array $grid, int $value, int $count): array
@@ -148,7 +154,8 @@ class KeycardFactory
 
     /**
      * @param array $grid
-     * @param int $value
+     * @param int   $value
+     *
      * @return array
      */
     private function placeValueRandomly(array $grid, int $value): array
@@ -157,7 +164,7 @@ class KeycardFactory
             $x = rand(0, self::DEFAULT_WIDTH - 1);
             $y = rand(0, self::DEFAULT_HEIGHT - 1);
 
-            if ($grid[$x][$y] === self::DEFAULT_VALUE) {
+            if (self::DEFAULT_VALUE === $grid[$x][$y]) {
                 $grid[$x][$y] = $value;
 
                 return $grid;

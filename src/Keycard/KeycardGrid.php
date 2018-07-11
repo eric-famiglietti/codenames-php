@@ -14,7 +14,7 @@ class KeycardGrid
 
     /**
      * @param KeycardGridDimensions $dimensions
-     * @param array $grid
+     * @param array                 $grid
      */
     public function __construct(KeycardGridDimensions $dimensions, array $grid)
     {
@@ -29,6 +29,7 @@ class KeycardGrid
     /**
      * @param int $x
      * @param int $y
+     *
      * @return int
      */
     public function getValue(int $x, int $y): int
@@ -39,8 +40,9 @@ class KeycardGrid
     }
 
     /**
-     * @param array $grid
+     * @param array                 $grid
      * @param KeycardGridDimensions $dimensions
+     *
      * @throws KeycardException
      */
     private function checkGridWidth(array $grid, KeycardGridDimensions $dimensions): void
@@ -51,8 +53,9 @@ class KeycardGrid
     }
 
     /**
-     * @param array $grid
+     * @param array                 $grid
      * @param KeycardGridDimensions $dimensions
+     *
      * @throws KeycardException
      */
     private function checkGridHeight(array $grid, KeycardGridDimensions $dimensions): void
@@ -68,13 +71,14 @@ class KeycardGrid
 
     /**
      * @param array $grid
+     *
      * @throws KeycardException
      */
     private function checkGridValues(array $grid): void
     {
         foreach ($grid as $column) {
             foreach ($column as $value) {
-                if (! KeycardValues::isValidValue($value)) {
+                if (!KeycardValues::isValidValue($value)) {
                     throw new KeycardException('Invalid value.');
                 }
             }
@@ -84,6 +88,7 @@ class KeycardGrid
     /**
      * @param int $x
      * @param int $y
+     *
      * @throws KeycardException
      */
     private function checkBounds(int $x, int $y): void

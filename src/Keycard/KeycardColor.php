@@ -34,7 +34,7 @@ class KeycardColor
      */
     public function isRed(): bool
     {
-        return $this->color === TeamColors::RED;
+        return TeamColors::RED === $this->color;
     }
 
     /**
@@ -42,16 +42,17 @@ class KeycardColor
      */
     public function isBlue(): bool
     {
-        return $this->color === TeamColors::BLUE;
+        return TeamColors::BLUE === $this->color;
     }
 
     /**
      * @param int $color
+     *
      * @throws KeycardException
      */
     private function checkColor(int $color): void
     {
-        if (! TeamColors::isValidValue($color)) {
+        if (!TeamColors::isValidValue($color)) {
             throw new KeycardException('Invalid color.');
         }
     }

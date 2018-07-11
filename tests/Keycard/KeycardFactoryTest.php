@@ -12,7 +12,7 @@ class KeycardFactoryTest extends TestCase
 {
     public function testItCreatesAKeycard()
     {
-        $factory = new KeycardFactory;
+        $factory = new KeycardFactory();
 
         $this->assertInstanceOf(Keycard::class, $factory->makeKeycard());
     }

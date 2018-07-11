@@ -14,7 +14,7 @@ class Keycard
 
     /**
      * @param KeycardColor $color
-     * @param KeycardGrid $grid
+     * @param KeycardGrid  $grid
      */
     public function __construct(KeycardColor $color, KeycardGrid $grid)
     {
@@ -33,6 +33,7 @@ class Keycard
     /**
      * @param int $x
      * @param int $y
+     *
      * @return int
      */
     public function getValue(int $x, int $y): int

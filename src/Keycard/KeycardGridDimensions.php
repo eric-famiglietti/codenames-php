@@ -43,6 +43,7 @@ class KeycardGridDimensions
 
     /**
      * @param int $width
+     *
      * @throws KeycardException
      */
     private function checkWidth(int $width): void
@@ -54,6 +55,7 @@ class KeycardGridDimensions
 
     /**
      * @param int $height
+     *
      * @throws KeycardException
      */
     private function checkHeight(int $height): void

@@ -9,4 +9,4 @@ before_script:
   - travis_retry composer update --prefer-lowest --no-interaction --prefer-source
 
 script:
-  - vendor/bin/phpunit
+  - composer test

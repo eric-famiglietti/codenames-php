@@ -4,19 +4,26 @@ declare(strict_types=1);
 
 namespace Codenames\Team;
 
+use Codenames\Player\Player;
+
 class Team
 {
     /** @var int */
     private $color;
 
+    /** @var TeamPlayers */
+    private $players;
+
     /**
-     * @param int $color
+     * @param int         $color
+     * @param TeamPlayers $players
      */
-    public function __construct(int $color)
+    public function __construct(int $color, TeamPlayers $players)
     {
         $this->checkColor($color);
 
         $this->color = $color;
+        $this->players = $players;
     }
 
     /**
@@ -53,6 +60,22 @@ class Team
     public function isBlue(): bool
     {
         return $this->isColor(TeamColors::BLUE);
+    }
+
+    /**
+     * @return Player
+     */
+    public function getSpymaster(): Player
+    {
+        return $this->players->getSpymaster();
+    }
+
+    /**
+     * @return Player
+     */
+    public function getOperative(): Player
+    {
+        return $this->players->getOperative();
     }
 
     /**

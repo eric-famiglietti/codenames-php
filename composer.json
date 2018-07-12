@@ -18,6 +18,9 @@
     "support": {
         "email": "eric.famiglietti@gmail.com"
     },
+    "require": {
+        "php": "^7.1"
+    },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.12",
         "phpunit/phpunit": "^7.2"

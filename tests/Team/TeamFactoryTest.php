@@ -13,8 +13,9 @@ class TeamFactoryTest extends TestCase
     {
         parent::setUp();
 
-        $this->factory = new TeamFactory;
+        $this->factory = new TeamFactory();
     }
+
     public function testItMakesARedTeam()
     {
         $team = $this->factory->makeRedTeam('Eric', 'Myles');

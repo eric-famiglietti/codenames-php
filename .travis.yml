@@ -4,10 +4,6 @@ php:
   - 7.1
   - 7.2
 
-before_script:
-  - travis_retry composer self-update
-  - travis_retry composer update --prefer-lowest --no-interaction --prefer-source
-
 script:
   - ./vendor/bin/php-cs-fixer fix --config=.php_cs.dist --diff --dry-run
   - composer test

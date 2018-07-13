@@ -13,8 +13,9 @@ class PlayerFactoryTest extends TestCase
     {
         parent::setUp();
 
-        $this->factory = new PlayerFactory;
+        $this->factory = new PlayerFactory();
     }
+
     public function testItMakesASpymaster()
     {
         $player = $this->factory->makeSpymaster('Eric');

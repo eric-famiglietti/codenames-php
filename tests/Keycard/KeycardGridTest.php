@@ -37,8 +37,6 @@ class KeycardGridTest extends TestCase
     {
         $this->expectException(KeycardException::class);
 
-        $this->expectException(KeycardException::class);
-
         $dimensions = new KeycardGridDimensions(1, 1);
         $grid = [[self::INVALID_VALUE]];
 

@@ -36,7 +36,7 @@
         }
     },
     "scripts": {
-        "test": "./vendor/bin/phpunit",
-        "lint": "./vendor/bin/php-cs-fixer fix --config=.php_cs.dist"
+        "lint": "./vendor/bin/php-cs-fixer fix --config=.php_cs.dist",
+        "test": "./vendor/bin/phpunit"
     }
 }

@@ -8,6 +8,14 @@ use Codenames\Player\PlayerFactory;
 
 class TeamFactory
 {
+    /** @var PlayerFactory */
+    private $factory;
+
+    public function __construct()
+    {
+        $this->factory = new PlayerFactory();
+    }
+
     /**
      * @param string $spymasterName
      * @param string $operativeName
@@ -42,10 +50,8 @@ class TeamFactory
      */
     private function makePlayers(string $spymasterName, string $operativeName): TeamPlayers
     {
-        $factory = new PlayerFactory();
-
-        $spymaster = $factory->makeSpymaster($spymasterName);
-        $operative = $factory->makeOperative($operativeName);
+        $spymaster = $this->factory->makeSpymaster($spymasterName);
+        $operative = $this->factory->makeOperative($operativeName);
 
         return new TeamPlayers($spymaster, $operative);
     }

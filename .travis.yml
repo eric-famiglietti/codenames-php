@@ -4,13 +4,13 @@ php:
   - 7.1
   - 7.2
 
+cache:
+  directories:
+    - $HOME/.composer/cache/files
+
 install:
   - composer install
 
 script:
   - ./vendor/bin/php-cs-fixer fix --config=.php_cs.dist --diff --dry-run
   - composer test
-
-cache:
-  directories:
-    - $HOME/.composer/cache/files

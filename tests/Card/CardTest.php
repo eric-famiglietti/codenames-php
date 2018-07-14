@@ -7,9 +7,9 @@ namespace Tests\Codenames\Card;
 use Codenames\Card\Card;
 use PHPUnit\Framework\TestCase;
 
-class CardTest extends TestCase
+final class CardTest extends TestCase
 {
-    public function testItReturnsTheCodename()
+    public function testItReturnsTheCodename(): void
     {
         $card = new Card('Orangutan');
 

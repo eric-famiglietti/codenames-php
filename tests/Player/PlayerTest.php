@@ -9,25 +9,26 @@ use Codenames\Player\PlayerException;
 use Codenames\Player\PlayerRoles;
 use PHPUnit\Framework\TestCase;
 
-class PlayerTest extends TestCase
+final class PlayerTest extends TestCase
 {
+    /** @var int */
     const INVALID_ROLE = 2;
 
-    public function testItThrowsAnExceptionIfTheRoleIsInvalid()
+    public function testItThrowsAnExceptionIfTheRoleIsInvalid(): void
     {
         $this->expectException(PlayerException::class);
 
         $player = new Player('Eric', self::INVALID_ROLE);
     }
 
-    public function testItCreatesAPlayer()
+    public function testItCreatesAPlayer(): void
     {
         $player = new Player('Eric', PlayerRoles::SPYMASTER);
 
         $this->assertInstanceOf(Player::class, $player);
     }
 
-    public function testItGetsTheName()
+    public function testItGetsTheName(): void
     {
         $name = 'Eric';
 
@@ -36,7 +37,7 @@ class PlayerTest extends TestCase
         $this->assertEquals($name, $player->getName());
     }
 
-    public function testItGetsTheRole()
+    public function testItGetsTheRole(): void
     {
         $role = PlayerRoles::SPYMASTER;
 
@@ -45,7 +46,7 @@ class PlayerTest extends TestCase
         $this->assertEquals($role, $player->getRole());
     }
 
-    public function testItReturnsTrueIfThePlayerIsTheRole()
+    public function testItReturnsTrueIfThePlayerIsTheRole(): void
     {
         $role = PlayerRoles::SPYMASTER;
         $spymaster = new Player('Eric', $role);
@@ -53,35 +54,35 @@ class PlayerTest extends TestCase
         $this->assertTrue($spymaster->isRole($role));
     }
 
-    public function testItReturnsFalseIfThePlayerIsntTheRole()
+    public function testItReturnsFalseIfThePlayerIsntTheRole(): void
     {
         $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
 
         $this->assertFalse($spymaster->isRole(PlayerRoles::OPERATIVE));
     }
 
-    public function testItReturnsTrueIfThePlayerIsASpymaster()
+    public function testItReturnsTrueIfThePlayerIsASpymaster(): void
     {
         $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
 
         $this->assertTrue($spymaster->isSpymaster());
     }
 
-    public function testItReturnsFalseIfThePlayerIsntASpymaster()
+    public function testItReturnsFalseIfThePlayerIsntASpymaster(): void
     {
         $operative = new Player('Myles', PlayerRoles::OPERATIVE);
 
         $this->assertFalse($operative->isSpymaster());
     }
 
-    public function testItReturnsFalseIfThePlayerIsntAnOperative()
+    public function testItReturnsFalseIfThePlayerIsntAnOperative(): void
     {
         $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
 
         $this->assertFalse($spymaster->isOperative());
     }
 
-    public function testItReturnsTrueIfThePlayerIsAnOperative()
+    public function testItReturnsTrueIfThePlayerIsAnOperative(): void
     {
         $operative = new Player('Myles', PlayerRoles::OPERATIVE);
 

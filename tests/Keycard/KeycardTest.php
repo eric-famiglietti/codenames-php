@@ -11,11 +11,12 @@ use Codenames\Keycard\KeycardGridDimensions;
 use Codenames\Team\TeamColors;
 use PHPUnit\Framework\TestCase;
 
-class KeycardTest extends TestCase
+final class KeycardTest extends TestCase
 {
+    /** @var Keycard */
     private $keycard;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -27,17 +28,17 @@ class KeycardTest extends TestCase
         $this->keycard = new Keycard($color, $grid);
     }
 
-    public function testItCreatesAKeycard()
+    public function testItCreatesAKeycard(): void
     {
         $this->assertInstanceOf(Keycard::class, $this->keycard);
     }
 
-    public function testItGetsTheColor()
+    public function testItGetsTheColor(): void
     {
         $this->assertEquals(TeamColors::RED, $this->keycard->getColor());
     }
 
-    public function testItGetsAValue()
+    public function testItGetsAValue(): void
     {
         $this->assertEquals(0, $this->keycard->getValue(0, 0));
     }

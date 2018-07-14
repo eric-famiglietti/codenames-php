@@ -10,9 +10,9 @@ use Codenames\Team\TeamException;
 use Codenames\Team\TeamPlayers;
 use PHPUnit\Framework\TestCase;
 
-class TeamPlayersTest extends TestCase
+final class TeamPlayersTest extends TestCase
 {
-    public function testItThrowsAnExceptionIfThePlayerIsNotASpymaster()
+    public function testItThrowsAnExceptionIfThePlayerIsNotASpymaster(): void
     {
         $this->expectException(TeamException::class);
 
@@ -21,7 +21,7 @@ class TeamPlayersTest extends TestCase
         new TeamPlayers($operative, $operative);
     }
 
-    public function testItThrowsAnExceptionIfThePlayerIsNotAnOperative()
+    public function testItThrowsAnExceptionIfThePlayerIsNotAnOperative(): void
     {
         $this->expectException(TeamException::class);
 
@@ -30,7 +30,7 @@ class TeamPlayersTest extends TestCase
         new TeamPlayers($spymaster, $spymaster);
     }
 
-    public function testItCreatesATeamPlayers()
+    public function testItCreatesATeamPlayers(): void
     {
         $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
         $operative = new Player('Myles', PlayerRoles::OPERATIVE);
@@ -40,7 +40,7 @@ class TeamPlayersTest extends TestCase
         $this->assertInstanceOf(TeamPlayers::class, $players);
     }
 
-    public function testItGetsTheSpymaster()
+    public function testItGetsTheSpymaster(): void
     {
         $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
         $operative = new Player('Myles', PlayerRoles::OPERATIVE);
@@ -50,7 +50,7 @@ class TeamPlayersTest extends TestCase
         $this->assertEquals($spymaster, $players->getSpymaster());
     }
 
-    public function testItGetsTheOperative()
+    public function testItGetsTheOperative(): void
     {
         $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
         $operative = new Player('Myles', PlayerRoles::OPERATIVE);

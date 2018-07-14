@@ -7,28 +7,28 @@ namespace Tests\Codenames\Team;
 use Codenames\Team\TeamFactory;
 use PHPUnit\Framework\TestCase;
 
-class TeamFactoryTest extends TestCase
+final class TeamFactoryTest extends TestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
         $this->factory = new TeamFactory();
     }
 
-    public function testItCreatesATeamFactory()
+    public function testItCreatesATeamFactory(): void
     {
         $this->assertInstanceOf(TeamFactory::class, $this->factory);
     }
 
-    public function testItMakesARedTeam()
+    public function testItMakesARedTeam(): void
     {
         $team = $this->factory->makeRedTeam('Eric', 'Myles');
 
         $this->assertTrue($team->isRed());
     }
 
-    public function testItMakesABlueTeam()
+    public function testItMakesABlueTeam(): void
     {
         $team = $this->factory->makeBlueTeam('Greg', 'Mike');
 

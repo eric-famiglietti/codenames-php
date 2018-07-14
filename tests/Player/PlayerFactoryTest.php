@@ -28,8 +28,8 @@ final class PlayerFactoryTest extends TestCase
 
     public function testItMakesAnOperative(): void
     {
-        $player = $this->factory->makeSpymaster('Eric');
+        $player = $this->factory->makeOperative('Eric');
 
-        $this->assertTrue($player->isSpymaster());
+        $this->assertTrue($player->isOperative());
     }
 }

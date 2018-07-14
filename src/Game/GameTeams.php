@@ -8,10 +8,10 @@ use Codenames\Team\Team;
 
 class GameTeams
 {
-    /** @var Team $redTeam */
+    /** @var Team */
     private $redTeam;
 
-    /** @var Team $blueTeam */
+    /** @var Team */
     private $blueTeam;
 
     /**

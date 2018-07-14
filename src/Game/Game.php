@@ -8,7 +8,7 @@ use Codenames\Team\Team;
 
 class Game
 {
-    /** @var GameTeams $teams */
+    /** @var GameTeams */
     private $teams;
 
     /**

@@ -9,6 +9,9 @@ use PHPUnit\Framework\TestCase;
 
 final class PlayerFactoryTest extends TestCase
 {
+    /** @var PlayerFactory */
+    private $factory;
+
     public function setUp(): void
     {
         parent::setUp();

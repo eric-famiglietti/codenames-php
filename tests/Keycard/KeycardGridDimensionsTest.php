@@ -13,35 +13,35 @@ class KeycardGridDimensionsTest extends TestCase
     const INVALID_WIDTH = 0;
     const INVALID_HEIGHT = 0;
 
-    public function testItThrowsAnExceptionIfTheWidthIsInvalid()
+    public function testItThrowsAnExceptionIfTheWidthIsInvalid(): void
     {
         $this->expectException(KeycardException::class);
 
         new KeycardGridDimensions(self::INVALID_WIDTH, 5);
     }
 
-    public function testItThrowsAnExceptionIfTheHeightIsInvalid()
+    public function testItThrowsAnExceptionIfTheHeightIsInvalid(): void
     {
         $this->expectException(KeycardException::class);
 
         new KeycardGridDimensions(5, self::INVALID_HEIGHT);
     }
 
-    public function testItCreatesAKeycardGridDimensions()
+    public function testItCreatesAKeycardGridDimensions(): void
     {
         $dimensions = new KeycardGridDimensions(5, 5);
 
         $this->assertInstanceOf(KeycardGridDimensions::class, $dimensions);
     }
 
-    public function testItGetsTheWidth()
+    public function testItGetsTheWidth(): void
     {
         $dimensions = new KeycardGridDimensions(5, 5);
 
         $this->assertEquals(5, $dimensions->getWidth());
     }
 
-    public function testItGetsTheHeight()
+    public function testItGetsTheHeight(): void
     {
         $dimensions = new KeycardGridDimensions(5, 5);
 

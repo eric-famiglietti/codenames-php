@@ -11,7 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class DeckTest extends TestCase
 {
-    public function testItGetsTheNumberOfCardsInTheDeck()
+    public function testItGetsTheNumberOfCardsInTheDeck(): void
     {
         $deck = new Deck();
         $deck->addCard(new Card('Tokyo'));
@@ -29,7 +29,7 @@ class DeckTest extends TestCase
         $deck->drawCard();
     }
 
-    public function testItGetsACardFromTheDeck()
+    public function testItGetsACardFromTheDeck(): void
     {
         $deck = new Deck();
         $card = new Card('Tokyo');

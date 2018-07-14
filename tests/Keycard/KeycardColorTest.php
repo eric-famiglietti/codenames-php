@@ -13,49 +13,49 @@ class KeycardColorTest extends TestCase
 {
     const INVALID_COLOR = 2;
 
-    public function testItThrowsAnExceptionIfTheColorIsInvalid()
+    public function testItThrowsAnExceptionIfTheColorIsInvalid(): void
     {
         $this->expectException(KeycardException::class);
 
         new KeycardColor(self::INVALID_COLOR);
     }
 
-    public function testItCreatesAKeycardColor()
+    public function testItCreatesAKeycardColor(): void
     {
         $color = new KeycardColor(TeamColors::RED);
 
         $this->assertInstanceOf(KeycardColor::class, $color);
     }
 
-    public function testItGetsTheColor()
+    public function testItGetsTheColor(): void
     {
         $color = new KeycardColor(TeamColors::RED);
 
         $this->assertEquals(TeamColors::RED, $color->getColor());
     }
 
-    public function testItReturnsTrueIfTheColorIsRed()
+    public function testItReturnsTrueIfTheColorIsRed(): void
     {
         $color = new KeycardColor(TeamColors::RED);
 
         $this->assertTrue($color->isRed());
     }
 
-    public function testItReturnsFalseIfTheColorIsNotRed()
+    public function testItReturnsFalseIfTheColorIsNotRed(): void
     {
         $color = new KeycardColor(TeamColors::BLUE);
 
         $this->assertFalse($color->isRed());
     }
 
-    public function testItReturnsTrueIfTheColorIsBlue()
+    public function testItReturnsTrueIfTheColorIsBlue(): void
     {
         $color = new KeycardColor(TeamColors::BLUE);
 
         $this->assertTrue($color->isBlue());
     }
 
-    public function testItReturnsFalseIfTheColorIsNotBlue()
+    public function testItReturnsFalseIfTheColorIsNotBlue(): void
     {
         $color = new KeycardColor(TeamColors::RED);
 

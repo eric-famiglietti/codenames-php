@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class DeckFactoryTest extends TestCase
 {
-    public function testItCreatesADeck()
+    public function testItCreatesADeck(): void
     {
         $factory = new DeckFactory();
 

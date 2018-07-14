@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 class KeycardFactoryTest extends TestCase
 {
-    public function testItCreatesAKeycard()
+    public function testItCreatesAKeycard(): void
     {
         $factory = new KeycardFactory();
 

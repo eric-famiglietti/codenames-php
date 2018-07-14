@@ -13,7 +13,7 @@ class KeycardGridTest extends TestCase
 {
     const INVALID_VALUE = 4;
 
-    public function testItThrowsAnExceptionIfTheGridWidthIsInvalid()
+    public function testItThrowsAnExceptionIfTheGridWidthIsInvalid(): void
     {
         $this->expectException(KeycardException::class);
 
@@ -23,7 +23,7 @@ class KeycardGridTest extends TestCase
         new KeycardGrid($dimensions, $grid);
     }
 
-    public function testItThrowsAnExceptionIfTheGridHeightIsInvalid()
+    public function testItThrowsAnExceptionIfTheGridHeightIsInvalid(): void
     {
         $this->expectException(KeycardException::class);
 
@@ -33,7 +33,7 @@ class KeycardGridTest extends TestCase
         new KeycardGrid($dimensions, $grid);
     }
 
-    public function testItThrowsAnExceptionIfTheGridValuesAreInvalid()
+    public function testItThrowsAnExceptionIfTheGridValuesAreInvalid(): void
     {
         $this->expectException(KeycardException::class);
 
@@ -43,7 +43,7 @@ class KeycardGridTest extends TestCase
         new KeycardGrid($dimensions, $grid);
     }
 
-    public function testItCreatesAKeycardGrid()
+    public function testItCreatesAKeycardGrid(): void
     {
         $dimensions = new KeycardGridDimensions(2, 2);
         $grid = [[0, 0], [0, 0]];
@@ -53,7 +53,7 @@ class KeycardGridTest extends TestCase
         $this->assertInstanceOf(KeycardGrid::class, $keycardGrid);
     }
 
-    public function testItThrowsAnExceptionIfTheBoundsAreInvalid()
+    public function testItThrowsAnExceptionIfTheBoundsAreInvalid(): void
     {
         $this->expectException(KeycardException::class);
 
@@ -64,7 +64,7 @@ class KeycardGridTest extends TestCase
         $keycardGrid->getValue(2, 1);
     }
 
-    public function testItGetsTheValue()
+    public function testItGetsTheValue(): void
     {
         $dimensions = new KeycardGridDimensions(2, 2);
         $grid = [[0, 0], [0, 1]];

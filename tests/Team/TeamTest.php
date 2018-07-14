@@ -18,7 +18,7 @@ class TeamTest extends TestCase
 
     private $players;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -28,21 +28,21 @@ class TeamTest extends TestCase
         $this->players = new TeamPlayers($spymaster, $operative);
     }
 
-    public function testItThrowsAnExceptionIfTheColorIsInvalidWhenCreatingATeam()
+    public function testItThrowsAnExceptionIfTheColorIsInvalidWhenCreatingATeam(): void
     {
         $this->expectException(TeamException::class);
 
         new Team(self::INVALID_COLOR, $this->players);
     }
 
-    public function testItCreatesATeam()
+    public function testItCreatesATeam(): void
     {
         $team = new Team(TeamColors::RED, $this->players);
 
         $this->assertInstanceOf(Team::class, $team);
     }
 
-    public function testGetsTheColor()
+    public function testGetsTheColor(): void
     {
         $color = TeamColors::RED;
 
@@ -51,7 +51,7 @@ class TeamTest extends TestCase
         $this->assertEquals($color, $team->getColor());
     }
 
-    public function testItThrowsAnExceptionIfTheColorIsInvalidWhenCheckingTheColor()
+    public function testItThrowsAnExceptionIfTheColorIsInvalidWhenCheckingTheColor(): void
     {
         $this->expectException(TeamException::class);
 
@@ -60,7 +60,7 @@ class TeamTest extends TestCase
         $team->isColor(self::INVALID_COLOR);
     }
 
-    public function testItReturnsTrueIfTheColorMatches()
+    public function testItReturnsTrueIfTheColorMatches(): void
     {
         $color = TeamColors::RED;
         $team = new Team($color, $this->players);
@@ -68,42 +68,42 @@ class TeamTest extends TestCase
         $this->assertTrue($team->isColor($color));
     }
 
-    public function testItReturnsFalseIfTheColorDoesntMatch()
+    public function testItReturnsFalseIfTheColorDoesntMatch(): void
     {
         $team = new Team(TeamColors::RED, $this->players);
 
         $this->assertFalse($team->isColor(TeamColors::BLUE));
     }
 
-    public function testItReturnsTrueIfTheColorIsRed()
+    public function testItReturnsTrueIfTheColorIsRed(): void
     {
         $team = new Team(TeamColors::RED, $this->players);
 
         $this->assertTrue($team->isRed());
     }
 
-    public function testItReturnsFalseIfTheColorIsntRed()
+    public function testItReturnsFalseIfTheColorIsntRed(): void
     {
         $team = new Team(TeamColors::BLUE, $this->players);
 
         $this->assertFalse($team->isRed());
     }
 
-    public function testItReturnsTrueIfTheColorIsBlue()
+    public function testItReturnsTrueIfTheColorIsBlue(): void
     {
         $team = new Team(TeamColors::BLUE, $this->players);
 
         $this->assertTrue($team->isBlue());
     }
 
-    public function testItReturnsFalseIfTheColorIsntBlue()
+    public function testItReturnsFalseIfTheColorIsntBlue(): void
     {
         $team = new Team(TeamColors::RED, $this->players);
 
         $this->assertFalse($team->isBlue());
     }
 
-    public function testItGetsTheSpymaster()
+    public function testItGetsTheSpymaster(): void
     {
         $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
         $operative = new Player('Myles', PlayerRoles::OPERATIVE);
@@ -113,7 +113,7 @@ class TeamTest extends TestCase
         $this->assertEquals($spymaster, $team->getSpymaster());
     }
 
-    public function testItGetsTheOperative()
+    public function testItGetsTheOperative(): void
     {
         $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
         $operative = new Player('Myles', PlayerRoles::OPERATIVE);

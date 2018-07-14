@@ -9,7 +9,7 @@ use PHPUnit\Framework\TestCase;
 
 class CardTest extends TestCase
 {
-    public function testItReturnsTheCodename()
+    public function testItReturnsTheCodename(): void
     {
         $card = new Card('Orangutan');
 

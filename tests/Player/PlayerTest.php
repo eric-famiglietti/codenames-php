@@ -22,13 +22,9 @@ class PlayerTest extends TestCase
 
     public function testItCreatesAPlayer()
     {
-        $name = 'Eric';
-        $role = PlayerRoles::SPYMASTER;
+        $player = new Player('Eric', PlayerRoles::SPYMASTER);
 
-        $player = new Player($name, $role);
-
-        $this->assertEquals($name, $player->getName());
-        $this->assertEquals($role, $player->getRole());
+        $this->assertInstanceOf(Player::class, $player);
     }
 
     public function testItGetsTheName()

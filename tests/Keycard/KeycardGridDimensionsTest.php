@@ -10,7 +10,10 @@ use PHPUnit\Framework\TestCase;
 
 class KeycardGridDimensionsTest extends TestCase
 {
+    /** @var int */
     const INVALID_WIDTH = 0;
+
+    /** @var int */
     const INVALID_HEIGHT = 0;
 
     public function testItThrowsAnExceptionIfTheWidthIsInvalid(): void

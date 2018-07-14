@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class KeycardColorTest extends TestCase
 {
+    /** @var int */
     const INVALID_COLOR = 2;
 
     public function testItThrowsAnExceptionIfTheColorIsInvalid(): void

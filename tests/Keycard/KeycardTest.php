@@ -13,6 +13,7 @@ use PHPUnit\Framework\TestCase;
 
 class KeycardTest extends TestCase
 {
+    /** @var Keycard */
     private $keycard;
 
     public function setUp(): void

@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class KeycardGridTest extends TestCase
 {
+    /** @var int */
     const INVALID_VALUE = 4;
 
     public function testItThrowsAnExceptionIfTheGridWidthIsInvalid(): void

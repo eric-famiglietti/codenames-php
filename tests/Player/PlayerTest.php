@@ -11,6 +11,7 @@ use PHPUnit\Framework\TestCase;
 
 class PlayerTest extends TestCase
 {
+    /** @var int */
     const INVALID_ROLE = 2;
 
     public function testItThrowsAnExceptionIfTheRoleIsInvalid(): void

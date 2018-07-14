@@ -14,8 +14,10 @@ use PHPUnit\Framework\TestCase;
 
 class TeamTest extends TestCase
 {
+    /** @var int */
     const INVALID_COLOR = 2;
 
+    /** @var TeamPlayers */
     private $players;
 
     public function setUp(): void

@@ -7,7 +7,7 @@ namespace Tests\Codenames\Team;
 use Codenames\Team\TeamFactory;
 use PHPUnit\Framework\TestCase;
 
-class TeamFactoryTest extends TestCase
+final class TeamFactoryTest extends TestCase
 {
     public function setUp(): void
     {

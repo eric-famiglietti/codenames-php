@@ -9,7 +9,7 @@ use Codenames\Keycard\KeycardGrid;
 use Codenames\Keycard\KeycardGridDimensions;
 use PHPUnit\Framework\TestCase;
 
-class KeycardGridTest extends TestCase
+final class KeycardGridTest extends TestCase
 {
     /** @var int */
     const INVALID_VALUE = 4;

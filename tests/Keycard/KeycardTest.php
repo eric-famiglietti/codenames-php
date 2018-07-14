@@ -11,7 +11,7 @@ use Codenames\Keycard\KeycardGridDimensions;
 use Codenames\Team\TeamColors;
 use PHPUnit\Framework\TestCase;
 
-class KeycardTest extends TestCase
+final class KeycardTest extends TestCase
 {
     /** @var Keycard */
     private $keycard;

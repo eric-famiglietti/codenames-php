@@ -8,7 +8,7 @@ use Codenames\Keycard\KeycardException;
 use Codenames\Keycard\KeycardGridDimensions;
 use PHPUnit\Framework\TestCase;
 
-class KeycardGridDimensionsTest extends TestCase
+final class KeycardGridDimensionsTest extends TestCase
 {
     /** @var int */
     const INVALID_WIDTH = 0;

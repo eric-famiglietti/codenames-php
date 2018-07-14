@@ -7,7 +7,7 @@ namespace Tests\Codenames\Player;
 use Codenames\Player\PlayerFactory;
 use PHPUnit\Framework\TestCase;
 
-class PlayerFactoryTest extends TestCase
+final class PlayerFactoryTest extends TestCase
 {
     public function setUp(): void
     {

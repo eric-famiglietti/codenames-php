@@ -9,7 +9,7 @@ use Codenames\Deck\Deck;
 use Codenames\Deck\DeckException;
 use PHPUnit\Framework\TestCase;
 
-class DeckTest extends TestCase
+final class DeckTest extends TestCase
 {
     public function testItGetsTheNumberOfCardsInTheDeck(): void
     {

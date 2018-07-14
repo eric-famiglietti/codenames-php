@@ -8,7 +8,7 @@ use Codenames\Keycard\Keycard;
 use Codenames\Keycard\KeycardFactory;
 use PHPUnit\Framework\TestCase;
 
-class KeycardFactoryTest extends TestCase
+final class KeycardFactoryTest extends TestCase
 {
     public function testItCreatesAKeycard(): void
     {

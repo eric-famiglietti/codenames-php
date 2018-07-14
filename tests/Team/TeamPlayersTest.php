@@ -10,7 +10,7 @@ use Codenames\Team\TeamException;
 use Codenames\Team\TeamPlayers;
 use PHPUnit\Framework\TestCase;
 
-class TeamPlayersTest extends TestCase
+final class TeamPlayersTest extends TestCase
 {
     public function testItThrowsAnExceptionIfThePlayerIsNotASpymaster(): void
     {

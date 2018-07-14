@@ -9,7 +9,7 @@ use Codenames\Player\PlayerException;
 use Codenames\Player\PlayerRoles;
 use PHPUnit\Framework\TestCase;
 
-class PlayerTest extends TestCase
+final class PlayerTest extends TestCase
 {
     /** @var int */
     const INVALID_ROLE = 2;

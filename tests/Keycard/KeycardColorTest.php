@@ -9,7 +9,7 @@ use Codenames\Keycard\KeycardException;
 use Codenames\Team\TeamColors;
 use PHPUnit\Framework\TestCase;
 
-class KeycardColorTest extends TestCase
+final class KeycardColorTest extends TestCase
 {
     /** @var int */
     const INVALID_COLOR = 2;

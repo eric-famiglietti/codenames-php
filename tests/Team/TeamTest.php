@@ -12,7 +12,7 @@ use Codenames\Team\TeamException;
 use Codenames\Team\TeamPlayers;
 use PHPUnit\Framework\TestCase;
 
-class TeamTest extends TestCase
+final class TeamTest extends TestCase
 {
     /** @var int */
     const INVALID_COLOR = 2;

@@ -15,6 +15,8 @@ class Team
     private $players;
 
     /**
+     * Create a new team instance.
+     *
      * @param int         $color
      * @param TeamPlayers $players
      */
@@ -27,6 +29,8 @@ class Team
     }
 
     /**
+     * Get the color of the team.
+     *
      * @return int
      */
     public function getColor(): int
@@ -35,6 +39,8 @@ class Team
     }
 
     /**
+     * Determine if the team is the given color.
+     *
      * @param int $color
      *
      * @return bool
@@ -47,6 +53,8 @@ class Team
     }
 
     /**
+     * Determine if the team is red.
+     *
      * @return bool
      */
     public function isRed(): bool
@@ -55,6 +63,8 @@ class Team
     }
 
     /**
+     * Determine if the team is blue.
+     *
      * @return bool
      */
     public function isBlue(): bool
@@ -63,6 +73,8 @@ class Team
     }
 
     /**
+     * Get the spymaster of the team.
+     *
      * @return Player
      */
     public function getSpymaster(): Player
@@ -71,6 +83,8 @@ class Team
     }
 
     /**
+     * Get the operative of the team.
+     *
      * @return Player
      */
     public function getOperative(): Player

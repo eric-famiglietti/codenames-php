@@ -11,12 +11,17 @@ class TeamFactory
     /** @var PlayerFactory */
     private $factory;
 
+    /**
+     * Create a new team factory instance.
+     */
     public function __construct()
     {
         $this->factory = new PlayerFactory();
     }
 
     /**
+     * Make a new team instance with a red color.
+     *
      * @param string $spymasterName
      * @param string $operativeName
      *
@@ -30,6 +35,8 @@ class TeamFactory
     }
 
     /**
+     * Make a new team instance with a blue color.
+     *
      * @param string $spymasterName
      * @param string $operativeName
      *

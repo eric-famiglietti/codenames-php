@@ -10,6 +10,8 @@ class Card
     private $codename;
 
     /**
+     * Create a new card instance.
+     *
      * @param string $codename
      */
     public function __construct(string $codename)
@@ -18,6 +20,8 @@ class Card
     }
 
     /**
+     * Get the codename of the card.
+     *
      * @return string
      */
     public function getCodename(): string

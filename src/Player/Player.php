@@ -13,6 +13,8 @@ class Player
     private $role;
 
     /**
+     * Create a new player instance.
+     *
      * @param string $name
      * @param int    $role
      */
@@ -25,6 +27,8 @@ class Player
     }
 
     /**
+     * Get the name of the player.
+     *
      * @return string
      */
     public function getName(): string
@@ -33,6 +37,8 @@ class Player
     }
 
     /**
+     * Get the role of the player.
+     *
      * @return int
      */
     public function getRole(): int
@@ -41,6 +47,8 @@ class Player
     }
 
     /**
+     * Determine if the player is the given role.
+     *
      * @param int $role
      *
      * @return bool
@@ -53,6 +61,8 @@ class Player
     }
 
     /**
+     * Determine if the player is a spymaster.
+     *
      * @return bool
      */
     public function isSpymaster(): bool
@@ -61,6 +71,8 @@ class Player
     }
 
     /**
+     * Determine if the player is an operative.
+     *
      * @return bool
      */
     public function isOperative(): bool

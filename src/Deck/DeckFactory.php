@@ -9,6 +9,8 @@ use Codenames\Card\Card;
 class DeckFactory
 {
     /**
+     * Create a new deck instance.
+     *
      * @param array $words
      *
      * @return Deck

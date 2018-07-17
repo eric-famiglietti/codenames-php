@@ -30,6 +30,8 @@ class KeycardFactory
     const ASSASSINS_COUNT = 1;
 
     /**
+     * Create a new keycard instance.
+     *
      * @return Keycard
      */
     public function makeKeycard(): Keycard

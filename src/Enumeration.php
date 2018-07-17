@@ -9,6 +9,8 @@ use ReflectionClass;
 abstract class Enumeration
 {
     /**
+     * Determine if the given value exists.
+     *
      * @param mixed $value
      *
      * @return bool

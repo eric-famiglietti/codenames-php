@@ -17,6 +17,7 @@ class Game
 
     /**
      * @param GameTeams $teams
+     * @param Keycard   $keycard
      */
     public function __construct(GameTeams $teams, Keycard $keycard)
     {

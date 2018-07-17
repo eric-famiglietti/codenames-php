@@ -4,11 +4,12 @@ declare(strict_types=1);
 
 namespace Codenames\Team;
 
+use Codenames\Color\Color;
 use Codenames\Player\Player;
 
 class Team
 {
-    /** @var int */
+    /** @var Color */
     private $color;
 
     /** @var TeamPlayers */
@@ -17,13 +18,11 @@ class Team
     /**
      * Create a new team instance.
      *
-     * @param int         $color
+     * @param Color       $color
      * @param TeamPlayers $players
      */
-    public function __construct(int $color, TeamPlayers $players)
+    public function __construct(Color $color, TeamPlayers $players)
     {
-        $this->checkColor($color);
-
         $this->color = $color;
         $this->players = $players;
     }
@@ -31,45 +30,11 @@ class Team
     /**
      * Get the color of the team.
      *
-     * @return int
+     * @return Color
      */
-    public function getColor(): int
+    public function getColor(): Color
     {
         return $this->color;
-    }
-
-    /**
-     * Determine if the team is the given color.
-     *
-     * @param int $color
-     *
-     * @return bool
-     */
-    public function isColor(int $color): bool
-    {
-        $this->checkColor($color);
-
-        return $this->color === $color;
-    }
-
-    /**
-     * Determine if the team is red.
-     *
-     * @return bool
-     */
-    public function isRed(): bool
-    {
-        return $this->isColor(TeamColors::RED);
-    }
-
-    /**
-     * Determine if the team is blue.
-     *
-     * @return bool
-     */
-    public function isBlue(): bool
-    {
-        return $this->isColor(TeamColors::BLUE);
     }
 
     /**
@@ -90,17 +55,5 @@ class Team
     public function getOperative(): Player
     {
         return $this->players->getOperative();
-    }
-
-    /**
-     * @param int $color
-     *
-     * @throws TeamException
-     */
-    private function checkColor(int $color): void
-    {
-        if (!TeamColors::isValidValue($color)) {
-            throw new TeamException('Invalid color.');
-        }
     }
 }

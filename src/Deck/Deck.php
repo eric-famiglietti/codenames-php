@@ -12,6 +12,8 @@ class Deck
     private $cards = [];
 
     /**
+     * Create a new deck instance.
+     *
      * @param Card $card
      */
     public function addCard(Card $card): void
@@ -20,6 +22,8 @@ class Deck
     }
 
     /**
+     * Get the number of cards in the deck.
+     *
      * @return int
      */
     public function count(): int
@@ -28,6 +32,8 @@ class Deck
     }
 
     /**
+     * Randomize the order of the cards in the deck.
+     *
      * @return bool
      */
     public function shuffle(): bool
@@ -36,6 +42,8 @@ class Deck
     }
 
     /**
+     * Add a card to the top of the deck.
+     *
      * @return Card
      */
     public function drawCard(): Card

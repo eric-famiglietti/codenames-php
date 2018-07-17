@@ -13,6 +13,8 @@ class KeycardGrid
     private $grid;
 
     /**
+     * Create a new keycard grid instance.
+     *
      * @param KeycardGridDimensions $dimensions
      * @param array                 $grid
      */
@@ -27,6 +29,8 @@ class KeycardGrid
     }
 
     /**
+     * Get the value of the keycard grid at the given coordinates.
+     *
      * @param int $x
      * @param int $y
      *

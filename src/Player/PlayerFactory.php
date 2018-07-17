@@ -7,6 +7,8 @@ namespace Codenames\Player;
 class PlayerFactory
 {
     /**
+     * Create a new player instance with a spymaster role.
+     *
      * @param string $name
      *
      * @return Player
@@ -17,6 +19,8 @@ class PlayerFactory
     }
 
     /**
+     * Create a new player instance with an operative role.
+     *
      * @param string $name
      *
      * @return Player

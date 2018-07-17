@@ -15,6 +15,8 @@ class TeamPlayers
     private $operative;
 
     /**
+     * Make a new team players instance.
+     *
      * @param Player $spymaster
      * @param Player $operative
      */
@@ -28,6 +30,8 @@ class TeamPlayers
     }
 
     /**
+     * Get the spymaster of the team.
+     *
      * @return Player
      */
     public function getSpymaster(): Player
@@ -36,6 +40,8 @@ class TeamPlayers
     }
 
     /**
+     * Get the operative of the team.
+     *
      * @return Player
      */
     public function getOperative(): Player

@@ -13,6 +13,8 @@ class Keycard
     private $grid;
 
     /**
+     * Create a new keycard instance.
+     *
      * @param KeycardColor $color
      * @param KeycardGrid  $grid
      */
@@ -23,6 +25,8 @@ class Keycard
     }
 
     /**
+     * Get the color of the keycard.
+     *
      * @return int
      */
     public function getColor(): int
@@ -31,6 +35,8 @@ class Keycard
     }
 
     /**
+     * Get the value of the keycard at the given coordinates.
+     *
      * @param int $x
      * @param int $y
      *

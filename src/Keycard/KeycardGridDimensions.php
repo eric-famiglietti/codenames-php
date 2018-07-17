@@ -13,6 +13,8 @@ class KeycardGridDimensions
     private $height;
 
     /**
+     * Create a new keycard grid dimensions instance.
+     *
      * @param int $width
      * @param int $height
      */
@@ -26,6 +28,8 @@ class KeycardGridDimensions
     }
 
     /**
+     * Get the width of the dimensions.
+     *
      * @return int
      */
     public function getWidth(): int
@@ -34,6 +38,8 @@ class KeycardGridDimensions
     }
 
     /**
+     * Get the height of the dimensions.
+     *
      * @return int
      */
     public function getHeight(): int

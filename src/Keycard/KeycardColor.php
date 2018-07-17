@@ -12,6 +12,8 @@ class KeycardColor
     private $color;
 
     /**
+     * Create a new keycard color instance.
+     *
      * @param int $color
      */
     public function __construct(int $color)
@@ -22,6 +24,8 @@ class KeycardColor
     }
 
     /**
+     * Get the color of the keycard color.
+     *
      * @return int
      */
     public function getColor(): int
@@ -30,6 +34,8 @@ class KeycardColor
     }
 
     /**
+     * Determine if the color is red.
+     *
      * @return bool
      */
     public function isRed(): bool
@@ -38,6 +44,8 @@ class KeycardColor
     }
 
     /**
+     * Determine if the color is blue.
+     *
      * @return bool
      */
     public function isBlue(): bool

@@ -15,6 +15,8 @@ class GameTeams
     private $blueTeam;
 
     /**
+     * Create a new game teams instance.
+     *
      * @param Team $redTeam
      * @param Team $blueTeam
      */
@@ -28,6 +30,8 @@ class GameTeams
     }
 
     /**
+     * Get the red team of the game.
+     *
      * @return Team
      */
     public function getRedTeam(): Team
@@ -36,6 +40,8 @@ class GameTeams
     }
 
     /**
+     * Get the blue team of the game.
+     *
      * @return Team
      */
     public function getBlueTeam(): Team

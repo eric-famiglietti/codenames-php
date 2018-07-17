@@ -16,6 +16,8 @@ class Game
     private $keycard;
 
     /**
+     * Create a new game instance.
+     *
      * @param GameTeams $teams
      * @param Keycard   $keycard
      */
@@ -26,6 +28,8 @@ class Game
     }
 
     /**
+     * Get the red team of the game.
+     *
      * @return Team
      */
     public function getRedTeam(): Team
@@ -34,6 +38,8 @@ class Game
     }
 
     /**
+     * Get the blue team of the game.
+     *
      * @return Team
      */
     public function getBlueTeam(): Team
@@ -42,6 +48,8 @@ class Game
     }
 
     /**
+     * Get the keycard of the game.
+     *
      * @return Keycard
      */
     public function getKeycard(): Keycard

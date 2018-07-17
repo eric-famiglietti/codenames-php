@@ -35,7 +35,7 @@ final class ColorTest extends TestCase
         $this->assertEquals(ColorValues::RED, $color->getValue());
     }
 
-    public function testItThrowsAnExceptionIfTheValueIsInvalidWhenCheckingTheValue()
+    public function testItThrowsAnExceptionIfTheValueIsInvalidWhenCheckingTheValue(): void
     {
         $this->expectException(ColorException::class);
 

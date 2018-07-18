@@ -48,9 +48,9 @@ class KeycardFactory
      */
     private function makeColor(): Color
     {
-        $color = self::COLOR_VALUES[array_rand(self::COLOR_VALUES)];
+        $value = self::COLOR_VALUES[array_rand(self::COLOR_VALUES)];
 
-        return new Color($color);
+        return new Color($value);
     }
 
     /**

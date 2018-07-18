@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Codenames\Team;
+namespace Codenames\Color;
 
 use Codenames\Enumeration;
 
-abstract class TeamColors extends Enumeration
+abstract class ColorValues extends Enumeration
 {
     /** @var int */
     const RED = 0;

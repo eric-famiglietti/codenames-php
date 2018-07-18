@@ -28,13 +28,13 @@ final class TeamFactoryTest extends TestCase
     {
         $team = $this->factory->makeRedTeam('Eric', 'Myles');
 
-        $this->assertTrue($team->isRed());
+        $this->assertTrue($team->getColor()->isRed());
     }
 
     public function testItMakesABlueTeam(): void
     {
         $team = $this->factory->makeBlueTeam('Greg', 'Mike');
 
-        $this->assertTrue($team->isBlue());
+        $this->assertTrue($team->getColor()->isBlue());
     }
 }

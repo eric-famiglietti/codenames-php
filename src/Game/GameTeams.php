@@ -56,7 +56,7 @@ class GameTeams
      */
     private function checkRedTeam(Team $team): void
     {
-        if (!$team->isRed()) {
+        if (!$team->getColor()->isRed()) {
             throw new GameException('Team must be red.');
         }
     }
@@ -68,7 +68,7 @@ class GameTeams
      */
     private function checkBlueTeam(Team $team): void
     {
-        if (!$team->isBlue()) {
+        if (!$team->getColor()->isBlue()) {
             throw new GameException('Team must be blue.');
         }
     }

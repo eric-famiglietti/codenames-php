@@ -4,124 +4,59 @@ declare(strict_types=1);
 
 namespace Tests\Codenames\Team;
 
+use Codenames\Color\Color;
+use Codenames\Color\ColorValues;
 use Codenames\Player\Player;
 use Codenames\Player\PlayerRoles;
 use Codenames\Team\Team;
-use Codenames\Team\TeamColors;
-use Codenames\Team\TeamException;
 use Codenames\Team\TeamPlayers;
 use PHPUnit\Framework\TestCase;
 
 final class TeamTest extends TestCase
 {
-    /** @var int */
-    const INVALID_COLOR = 2;
+    /** @var Color */
+    private $color;
 
-    /** @var TeamPlayers */
-    private $players;
+    /** @var Player */
+    private $spymaster;
+
+    /** @var Player */
+    private $operative;
+
+    /** @var Team */
+    private $team;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
-        $operative = new Player('Myles', PlayerRoles::OPERATIVE);
+        $this->color = new Color(ColorValues::RED);
 
-        $this->players = new TeamPlayers($spymaster, $operative);
-    }
+        $this->spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
+        $this->operative = new Player('Myles', PlayerRoles::OPERATIVE);
 
-    public function testItThrowsAnExceptionIfTheColorIsInvalidWhenCreatingATeam(): void
-    {
-        $this->expectException(TeamException::class);
+        $players = new TeamPlayers($this->spymaster, $this->operative);
 
-        new Team(self::INVALID_COLOR, $this->players);
+        $this->team = new Team($this->color, $players);
     }
 
     public function testItCreatesATeam(): void
     {
-        $team = new Team(TeamColors::RED, $this->players);
-
-        $this->assertInstanceOf(Team::class, $team);
+        $this->assertInstanceOf(Team::class, $this->team);
     }
 
-    public function testGetsTheColor(): void
+    public function testItGetsTheColor(): void
     {
-        $color = TeamColors::RED;
-
-        $team = new Team($color, $this->players);
-
-        $this->assertEquals($color, $team->getColor());
-    }
-
-    public function testItThrowsAnExceptionIfTheColorIsInvalidWhenCheckingTheColor(): void
-    {
-        $this->expectException(TeamException::class);
-
-        $team = new Team(TeamColors::RED, $this->players);
-
-        $team->isColor(self::INVALID_COLOR);
-    }
-
-    public function testItReturnsTrueIfTheColorMatches(): void
-    {
-        $color = TeamColors::RED;
-        $team = new Team($color, $this->players);
-
-        $this->assertTrue($team->isColor($color));
-    }
-
-    public function testItReturnsFalseIfTheColorDoesntMatch(): void
-    {
-        $team = new Team(TeamColors::RED, $this->players);
-
-        $this->assertFalse($team->isColor(TeamColors::BLUE));
-    }
-
-    public function testItReturnsTrueIfTheColorIsRed(): void
-    {
-        $team = new Team(TeamColors::RED, $this->players);
-
-        $this->assertTrue($team->isRed());
-    }
-
-    public function testItReturnsFalseIfTheColorIsntRed(): void
-    {
-        $team = new Team(TeamColors::BLUE, $this->players);
-
-        $this->assertFalse($team->isRed());
-    }
-
-    public function testItReturnsTrueIfTheColorIsBlue(): void
-    {
-        $team = new Team(TeamColors::BLUE, $this->players);
-
-        $this->assertTrue($team->isBlue());
-    }
-
-    public function testItReturnsFalseIfTheColorIsntBlue(): void
-    {
-        $team = new Team(TeamColors::RED, $this->players);
-
-        $this->assertFalse($team->isBlue());
+        $this->assertEquals($this->color, $this->team->getColor());
     }
 
     public function testItGetsTheSpymaster(): void
     {
-        $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
-        $operative = new Player('Myles', PlayerRoles::OPERATIVE);
-        $players = new TeamPlayers($spymaster, $operative);
-        $team = new Team(TeamColors::RED, $players);
-
-        $this->assertEquals($spymaster, $team->getSpymaster());
+        $this->assertEquals($this->spymaster, $this->team->getSpymaster());
     }
 
     public function testItGetsTheOperative(): void
     {
-        $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
-        $operative = new Player('Myles', PlayerRoles::OPERATIVE);
-        $players = new TeamPlayers($spymaster, $operative);
-        $team = new Team(TeamColors::RED, $players);
-
-        $this->assertEquals($operative, $team->getOperative());
+        $this->assertEquals($this->operative, $this->team->getOperative());
     }
 }

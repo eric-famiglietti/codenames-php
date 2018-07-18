@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace Codenames\Keycard;
 
-use Codenames\Team\TeamColors;
+use Codenames\Color\Color;
+use Codenames\Color\ColorValues;
 
 class KeycardFactory
 {
     /** @var array */
-    const COLORS = [TeamColors::RED, TeamColors::BLUE];
+    const COLOR_VALUES = [ColorValues::RED, ColorValues::BLUE];
 
     /** @var int */
     const DEFAULT_WIDTH = 5;
@@ -36,28 +37,28 @@ class KeycardFactory
      */
     public function makeKeycard(): Keycard
     {
-        $color = $this->makeKeycardColor();
+        $color = $this->makeColor();
         $grid = $this->makeKeycardGrid($color);
 
         return new Keycard($color, $grid);
     }
 
     /**
-     * @return KeycardColor
+     * @return Color
      */
-    private function makeKeycardColor(): KeycardColor
+    private function makeColor(): Color
     {
-        $color = self::COLORS[array_rand(self::COLORS)];
+        $value = self::COLOR_VALUES[array_rand(self::COLOR_VALUES)];
 
-        return new KeycardColor($color);
+        return new Color($value);
     }
 
     /**
-     * @param KeycardColor $color
+     * @param Color $color
      *
      * @return KeycardGrid
      */
-    private function makeKeycardGrid(KeycardColor $color): KeycardGrid
+    private function makeKeycardGrid(Color $color): KeycardGrid
     {
         $dimensions = $this->makeKeycardDimensions();
 
@@ -94,11 +95,11 @@ class KeycardFactory
     }
 
     /**
-     * @param KeycardColor $color
+     * @param Color $color
      *
      * @return array
      */
-    private function populateGrid(array $grid, KeycardColor $color): array
+    private function populateGrid(array $grid, Color $color): array
     {
         $redsCount = $this->calculateRedsCount($color);
         $bluesCount = $this->calculateBluesCount($color);
@@ -111,11 +112,11 @@ class KeycardFactory
     }
 
     /**
-     * @param KeycardColor $color
+     * @param Color $color
      *
      * @return int
      */
-    private function calculateRedsCount(KeycardColor $color): int
+    private function calculateRedsCount(Color $color): int
     {
         if ($color->isRed()) {
             return self::REDS_COUNT + 1;
@@ -125,11 +126,11 @@ class KeycardFactory
     }
 
     /**
-     * @param KeycardColor $color
+     * @param Color $color
      *
      * @return int
      */
-    private function calculateBluesCount(KeycardColor $color): int
+    private function calculateBluesCount(Color $color): int
     {
         if ($color->isBlue()) {
             return self::BLUES_COUNT + 1;

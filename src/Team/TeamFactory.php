@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Codenames\Team;
 
+use Codenames\Color\Color;
+use Codenames\Color\ColorValues;
 use Codenames\Player\PlayerFactory;
 
 class TeamFactory
@@ -30,8 +32,9 @@ class TeamFactory
     public function makeRedTeam(string $spymasterName, string $operativeName): Team
     {
         $players = $this->makePlayers($spymasterName, $operativeName);
+        $color = $this->makeColor(ColorValues::RED);
 
-        return $this->makeTeam(TeamColors::RED, $players);
+        return $this->makeTeam($color, $players);
     }
 
     /**
@@ -45,8 +48,19 @@ class TeamFactory
     public function makeBlueTeam(string $spymasterName, string $operativeName): Team
     {
         $players = $this->makePlayers($spymasterName, $operativeName);
+        $color = $this->makeColor(ColorValues::BLUE);
 
-        return $this->makeTeam(TeamColors::BLUE, $players);
+        return $this->makeTeam($color, $players);
+    }
+
+    /**
+     * @param int $value
+     *
+     * @return Color
+     */
+    private function makeColor(int $value): Color
+    {
+        return new Color($value);
     }
 
     /**
@@ -64,12 +78,12 @@ class TeamFactory
     }
 
     /**
-     * @param int         $color
+     * @param Color       $color
      * @param TeamPlayers $players
      *
      * @return Team
      */
-    private function makeTeam(int $color, TeamPlayers $players): Team
+    private function makeTeam(Color $color, TeamPlayers $players): Team
     {
         return new Team($color, $players);
     }

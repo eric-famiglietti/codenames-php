@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Codenames\Keycard;
 
+use Codenames\Color\Color;
+
 class Keycard
 {
-    /** @var KeycardColor */
+    /** @var Color */
     private $color;
 
     /** @var KeycardGrid */
@@ -15,10 +17,10 @@ class Keycard
     /**
      * Create a new keycard instance.
      *
-     * @param KeycardColor $color
-     * @param KeycardGrid  $grid
+     * @param Color       $color
+     * @param KeycardGrid $grid
      */
-    public function __construct(KeycardColor $color, KeycardGrid $grid)
+    public function __construct(Color $color, KeycardGrid $grid)
     {
         $this->color = $color;
         $this->grid = $grid;
@@ -27,11 +29,11 @@ class Keycard
     /**
      * Get the color of the keycard.
      *
-     * @return int
+     * @return Color
      */
-    public function getColor(): int
+    public function getColor(): Color
     {
-        return $this->color->getColor();
+        return $this->color;
     }
 
     /**

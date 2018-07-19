@@ -11,11 +11,11 @@ abstract class Enumeration
     /**
      * Determine if the given value exists.
      *
-     * @param mixed $value
+     * @param int $value
      *
      * @return bool
      */
-    public static function isValidValue($value): bool
+    public static function isValidValue(int $value): bool
     {
         $class = new ReflectionClass(get_called_class());
 

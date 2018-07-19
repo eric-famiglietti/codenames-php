@@ -46,6 +46,15 @@ final class PlayerTest extends TestCase
         $this->assertEquals($role, $player->getRole());
     }
 
+    public function testItThrowsAnExceptionIfTheRoleIsInvalidWhenCheckingTheRole(): void
+    {
+        $this->expectException(PlayerException::class);
+
+        $player = new Player('Eric', PlayerRoles::SPYMASTER);
+
+        $player->isRole(self::INVALID_ROLE);
+    }
+
     public function testItReturnsTrueIfThePlayerIsTheRole(): void
     {
         $role = PlayerRoles::SPYMASTER;

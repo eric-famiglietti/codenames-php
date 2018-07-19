@@ -38,7 +38,8 @@ class KeycardGrid
      */
     public function getValue(int $x, int $y): int
     {
-        $this->checkBounds($x, $y);
+        $this->checkX($x);
+        $this->checkY($y);
 
         return $this->grid[$x][$y];
     }
@@ -91,16 +92,23 @@ class KeycardGrid
 
     /**
      * @param int $x
-     * @param int $y
      *
      * @throws KeycardException
      */
-    private function checkBounds(int $x, int $y): void
+    private function checkX(int $x): void
     {
         if ($x < 0 || $x >= $this->dimensions->getWidth()) {
             throw new KeycardException('X value out of bounds.');
         }
+    }
 
+    /**
+     * @param int $y
+     *
+     * @throws KeycardException
+     */
+    private function checkY(int $y): void
+    {
         if ($y < 0 || $y >= $this->dimensions->getHeight()) {
             throw new KeycardException('Y value out of bounds.');
         }

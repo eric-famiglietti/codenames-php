@@ -10,7 +10,7 @@ class KeycardGrid
     private $dimensions;
 
     /** @var array */
-    private $grid;
+    private $grid = [];
 
     /**
      * Create a new keycard grid instance.

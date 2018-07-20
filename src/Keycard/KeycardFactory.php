@@ -77,8 +77,6 @@ class KeycardFactory
     }
 
     /**
-     * @param KeycardGridDimensions $dimensions
-     *
      * @return array
      */
     private function makeGrid(): array

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Tests\Codenames\Keycard;
+namespace Tests\Codenames\Color;
 
 use Codenames\Color\Color;
 use Codenames\Color\ColorException;

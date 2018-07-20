@@ -23,7 +23,8 @@ final class DeckTest extends TestCase
     {
         $this->expectException(DeckException::class);
 
-        $deck = new Deck(['Tokyo']);
+        $deck = new Deck();
+        $deck->addCard(new Card('Tokyo'));
 
         $deck->drawCard();
         $deck->drawCard();

@@ -13,6 +13,8 @@ class Color
      * Create a new color instance.
      *
      * @param int $value
+     *
+     * @throws ColorException if the value is not a valid color value
      */
     public function __construct(int $value)
     {
@@ -37,6 +39,8 @@ class Color
      * @param int $value
      *
      * @return bool
+     *
+     * @throws ColorException if the value is not a valid color value
      */
     public function isValue(int $value): bool
     {

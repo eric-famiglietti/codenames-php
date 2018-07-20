@@ -19,6 +19,9 @@ class TeamPlayers
      *
      * @param Player $spymaster
      * @param Player $operative
+     *
+     * @throws TeamException if the player is not a spymaster
+     * @throws TeamException if the player is not an operative
      */
     public function __construct(Player $spymaster, Player $operative)
     {

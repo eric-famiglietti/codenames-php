@@ -17,6 +17,10 @@ class KeycardGrid
      *
      * @param KeycardGridDimensions $dimensions
      * @param array                 $grid
+     *
+     * @throws KeycardException if the grid width does not match the dimensions width
+     * @throws KeycardException if the grid height does not match the dimensions height
+     * @throws KeycardException if the grid values are not valid keycard values
      */
     public function __construct(KeycardGridDimensions $dimensions, array $grid)
     {
@@ -35,6 +39,9 @@ class KeycardGrid
      * @param int $y
      *
      * @return int
+     *
+     * @throws KeycardException if the x value is out of bounds
+     * @throws KeycardException if the y value is out of bounds
      */
     public function getValue(int $x, int $y): int
     {

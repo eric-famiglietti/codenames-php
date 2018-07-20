@@ -17,6 +17,9 @@ class KeycardGridDimensions
      *
      * @param int $width
      * @param int $height
+     *
+     * @throws KeycardException if the width is not a positive integer
+     * @throws KeycardException if the height is not a positive integer
      */
     public function __construct(int $width, int $height)
     {

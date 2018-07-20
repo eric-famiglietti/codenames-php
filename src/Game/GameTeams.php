@@ -19,6 +19,9 @@ class GameTeams
      *
      * @param Team $redTeam
      * @param Team $blueTeam
+     *
+     * @throws GameException if the team is not red
+     * @throws GameException if the team is not blue
      */
     public function __construct(Team $redTeam, Team $blueTeam)
     {

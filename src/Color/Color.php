@@ -68,7 +68,7 @@ class Color
     /**
      * @param int $value
      *
-     * @throws ColorException
+     * @throws ColorException if the value is not a valid color value
      */
     private function checkValue(int $value): void
     {

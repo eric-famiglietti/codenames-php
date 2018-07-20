@@ -83,7 +83,7 @@ class Player
     /**
      * @param int $role
      *
-     * @throws PlayerException
+     * @throws PlayerException if the role is not a valid player role
      */
     private function checkRole(int $role): void
     {

@@ -27,7 +27,7 @@ class DeckFactory
     /**
      * @param array $words
      *
-     * @throws DeckException
+     * @throws DeckException if the words array is empty
      */
     private function checkWords(array $words): void
     {

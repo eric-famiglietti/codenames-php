@@ -52,7 +52,7 @@ class GameTeams
     /**
      * @param Team $team
      *
-     * @throws GameException
+     * @throws GameException if the team is not red
      */
     private function checkRedTeam(Team $team): void
     {
@@ -64,7 +64,7 @@ class GameTeams
     /**
      * @param Team $team
      *
-     * @throws GameException
+     * @throws GameException if the team is not blue
      */
     private function checkBlueTeam(Team $team): void
     {

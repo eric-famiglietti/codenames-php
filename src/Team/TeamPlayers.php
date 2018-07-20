@@ -52,7 +52,7 @@ class TeamPlayers
     /**
      * @param Player $player
      *
-     * @throws TeamException
+     * @throws TeamException if the player is not a spymaster
      */
     private function checkSpymaster(Player $player): void
     {
@@ -64,7 +64,7 @@ class TeamPlayers
     /**
      * @param Player $player
      *
-     * @throws TeamException
+     * @throws TeamException if the player is not an operative
      */
     private function checkOperative(Player $player): void
     {

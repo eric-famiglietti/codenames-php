@@ -19,6 +19,9 @@ class GameTeams
      *
      * @param Team $redTeam
      * @param Team $blueTeam
+     *
+     * @throws GameException if the team is not red
+     * @throws GameException if the team is not blue
      */
     public function __construct(Team $redTeam, Team $blueTeam)
     {
@@ -52,7 +55,7 @@ class GameTeams
     /**
      * @param Team $team
      *
-     * @throws GameException
+     * @throws GameException if the team is not red
      */
     private function checkRedTeam(Team $team): void
     {
@@ -64,7 +67,7 @@ class GameTeams
     /**
      * @param Team $team
      *
-     * @throws GameException
+     * @throws GameException if the team is not blue
      */
     private function checkBlueTeam(Team $team): void
     {

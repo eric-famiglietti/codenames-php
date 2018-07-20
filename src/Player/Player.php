@@ -17,6 +17,8 @@ class Player
      *
      * @param string $name
      * @param int    $role
+     *
+     * @throws PlayerException if the role is not a valid player role
      */
     public function __construct(string $name, int $role)
     {
@@ -52,6 +54,8 @@ class Player
      * @param int $role
      *
      * @return bool
+     *
+     * @throws PlayerException if the role is not a valid player role
      */
     public function isRole(int $role): bool
     {
@@ -83,7 +87,7 @@ class Player
     /**
      * @param int $role
      *
-     * @throws PlayerException
+     * @throws PlayerException if the role is not a valid player role
      */
     private function checkRole(int $role): void
     {

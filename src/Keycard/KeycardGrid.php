@@ -17,6 +17,10 @@ class KeycardGrid
      *
      * @param KeycardGridDimensions $dimensions
      * @param array                 $grid
+     *
+     * @throws KeycardException if the grid width does not match the dimensions width
+     * @throws KeycardException if the grid height does not match the dimensions height
+     * @throws KeycardException if the grid values are not valid keycard values
      */
     public function __construct(KeycardGridDimensions $dimensions, array $grid)
     {
@@ -35,6 +39,9 @@ class KeycardGrid
      * @param int $y
      *
      * @return int
+     *
+     * @throws KeycardException if the x value is out of bounds
+     * @throws KeycardException if the y value is out of bounds
      */
     public function getValue(int $x, int $y): int
     {
@@ -48,7 +55,7 @@ class KeycardGrid
      * @param array                 $grid
      * @param KeycardGridDimensions $dimensions
      *
-     * @throws KeycardException
+     * @throws KeycardException if the grid width does not match the dimensions width
      */
     private function checkGridWidth(array $grid, KeycardGridDimensions $dimensions): void
     {
@@ -61,7 +68,7 @@ class KeycardGrid
      * @param array                 $grid
      * @param KeycardGridDimensions $dimensions
      *
-     * @throws KeycardException
+     * @throws KeycardException if the grid height does not match the dimensions height
      */
     private function checkGridHeight(array $grid, KeycardGridDimensions $dimensions): void
     {
@@ -77,7 +84,7 @@ class KeycardGrid
     /**
      * @param array $grid
      *
-     * @throws KeycardException
+     * @throws KeycardException if the grid values are not valid keycard values
      */
     private function checkGridValues(array $grid): void
     {
@@ -93,7 +100,7 @@ class KeycardGrid
     /**
      * @param int $x
      *
-     * @throws KeycardException
+     * @throws KeycardException if the x value is out of bounds
      */
     private function checkX(int $x): void
     {
@@ -105,7 +112,7 @@ class KeycardGrid
     /**
      * @param int $y
      *
-     * @throws KeycardException
+     * @throws KeycardException if the y value is out of bounds
      */
     private function checkY(int $y): void
     {

@@ -54,7 +54,7 @@ class Deck
     }
 
     /**
-     * @throws DeckException
+     * @throws DeckException if the deck is empty
      */
     private function checkCount(): void
     {

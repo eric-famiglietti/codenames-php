@@ -11,6 +11,13 @@ use PHPUnit\Framework\TestCase;
 
 final class DeckTest extends TestCase
 {
+    public function testItCreatesADeck(): void
+    {
+        $deck = new Deck();
+
+        $this->assertInstanceOf(Deck::class, $deck);
+    }
+
     public function testItGetsTheNumberOfCardsInTheDeck(): void
     {
         $deck = new Deck();

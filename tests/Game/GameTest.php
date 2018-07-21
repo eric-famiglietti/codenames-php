@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Tests\Codenames\Game;
 
 use Codenames\Game\Game;
-use Codenames\Game\GameTeams;
 use Codenames\Keycard\Keycard;
 use Codenames\Keycard\KeycardFactory;
 use Codenames\Team\Team;
 use Codenames\Team\TeamFactory;
+use Codenames\Team\Teams;
 use PHPUnit\Framework\TestCase;
 
 final class GameTest extends TestCase
@@ -35,7 +35,7 @@ final class GameTest extends TestCase
         $this->redTeam = $teamFactory->makeRedTeam('Eric', 'Myles');
         $this->blueTeam = $teamFactory->makeBlueTeam('Greg', 'Mike');
 
-        $teams = new GameTeams($this->redTeam, $this->blueTeam);
+        $teams = new Teams($this->redTeam, $this->blueTeam);
 
         $keycardFactory = new KeycardFactory();
 

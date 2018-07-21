@@ -7,7 +7,7 @@ namespace Tests\Codenames\Team;
 use Codenames\Color\Color;
 use Codenames\Color\ColorValues;
 use Codenames\Player\Player;
-use Codenames\Player\PlayerRoles;
+use Codenames\Player\PlayerFactory;
 use Codenames\Team\Team;
 use Codenames\Team\TeamPlayers;
 use PHPUnit\Framework\TestCase;
@@ -32,8 +32,10 @@ final class TeamTest extends TestCase
 
         $this->color = new Color(ColorValues::RED);
 
-        $this->spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
-        $this->operative = new Player('Myles', PlayerRoles::OPERATIVE);
+        $factory = new PlayerFactory();
+
+        $this->spymaster = $factory->makeSpymaster('Eric');
+        $this->operative = $factory->makeOperative('Myles');
 
         $players = new TeamPlayers($this->spymaster, $this->operative);
 

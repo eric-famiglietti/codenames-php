@@ -4,6 +4,9 @@ declare(strict_types=1);
 
 namespace Codenames\Player;
 
+use Codenames\Role\Role;
+use Codenames\Role\RoleValues;
+
 class PlayerFactory
 {
     /**
@@ -15,7 +18,9 @@ class PlayerFactory
      */
     public function makeSpymaster(string $name): Player
     {
-        return $this->makePlayer($name, PlayerRoles::SPYMASTER);
+        $role = new Role(RoleValues::SPYMASTER);
+
+        return $this->makePlayer($name, $role);
     }
 
     /**
@@ -27,16 +32,18 @@ class PlayerFactory
      */
     public function makeOperative(string $name): Player
     {
-        return $this->makePlayer($name, PlayerRoles::OPERATIVE);
+        $role = new Role(RoleValues::OPERATIVE);
+
+        return $this->makePlayer($name, $role);
     }
 
     /**
      * @param string $name
-     * @param int    $role
+     * @param Role   $role
      *
      * @return Player
      */
-    private function makePlayer(string $name, int $role): Player
+    private function makePlayer(string $name, Role $role): Player
     {
         return new Player($name, $role);
     }

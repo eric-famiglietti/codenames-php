@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace Codenames\Player;
+namespace Codenames\Role;
 
 use Codenames\Enumeration;
 
-abstract class PlayerRoles extends Enumeration
+abstract class RoleValues extends Enumeration
 {
     /** @var int */
     const SPYMASTER = 0;

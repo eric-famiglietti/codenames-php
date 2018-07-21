@@ -59,7 +59,7 @@ class TeamPlayers
      */
     private function checkSpymaster(Player $player): void
     {
-        if (!$player->isSpymaster()) {
+        if (!$player->getRole()->isSpymaster()) {
             throw new TeamException('Player must be a spymaster.');
         }
     }
@@ -71,7 +71,7 @@ class TeamPlayers
      */
     private function checkOperative(Player $player): void
     {
-        if (!$player->isOperative()) {
+        if (!$player->getRole()->isOperative()) {
             throw new TeamException('Player must be an operative.');
         }
     }

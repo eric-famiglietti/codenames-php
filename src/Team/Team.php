@@ -6,22 +6,23 @@ namespace Codenames\Team;
 
 use Codenames\Color\Color;
 use Codenames\Player\Player;
+use Codenames\Player\Players;
 
 class Team
 {
     /** @var Color */
     private $color;
 
-    /** @var TeamPlayers */
+    /** @var Players */
     private $players;
 
     /**
      * Create a new team instance.
      *
-     * @param Color       $color
-     * @param TeamPlayers $players
+     * @param Color   $color
+     * @param Players $players
      */
-    public function __construct(Color $color, TeamPlayers $players)
+    public function __construct(Color $color, Players $players)
     {
         $this->color = $color;
         $this->players = $players;

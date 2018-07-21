@@ -7,6 +7,7 @@ namespace Codenames\Team;
 use Codenames\Color\Color;
 use Codenames\Color\ColorValues;
 use Codenames\Player\PlayerFactory;
+use Codenames\Player\Players;
 
 class TeamFactory
 {
@@ -67,23 +68,23 @@ class TeamFactory
      * @param string $spymasterName
      * @param string $operativeName
      *
-     * @return TeamPlayers
+     * @return Players
      */
-    private function makePlayers(string $spymasterName, string $operativeName): TeamPlayers
+    private function makePlayers(string $spymasterName, string $operativeName): Players
     {
         $spymaster = $this->factory->makeSpymaster($spymasterName);
         $operative = $this->factory->makeOperative($operativeName);
 
-        return new TeamPlayers($spymaster, $operative);
+        return new Players($spymaster, $operative);
     }
 
     /**
-     * @param Color       $color
-     * @param TeamPlayers $players
+     * @param Color   $color
+     * @param Players $players
      *
      * @return Team
      */
-    private function makeTeam(Color $color, TeamPlayers $players): Team
+    private function makeTeam(Color $color, Players $players): Team
     {
         return new Team($color, $players);
     }

@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Codenames\Game;
+namespace Codenames\Team;
 
-use Codenames\Team\Team;
-
-class GameTeams
+class Teams
 {
     /** @var Team */
     private $redTeam;
@@ -20,8 +18,8 @@ class GameTeams
      * @param Team $redTeam
      * @param Team $blueTeam
      *
-     * @throws GameException if the team is not red
-     * @throws GameException if the team is not blue
+     * @throws TeamException if the team is not red
+     * @throws TeamException if the team is not blue
      */
     public function __construct(Team $redTeam, Team $blueTeam)
     {
@@ -55,24 +53,24 @@ class GameTeams
     /**
      * @param Team $team
      *
-     * @throws GameException if the team is not red
+     * @throws TeamException if the team is not red
      */
     private function checkRedTeam(Team $team): void
     {
         if (!$team->getColor()->isRed()) {
-            throw new GameException('Team must be red.');
+            throw new TeamException('Team must be red.');
         }
     }
 
     /**
      * @param Team $team
      *
-     * @throws GameException if the team is not blue
+     * @throws TeamException if the team is not blue
      */
     private function checkBlueTeam(Team $team): void
     {
         if (!$team->getColor()->isBlue()) {
-            throw new GameException('Team must be blue.');
+            throw new TeamException('Team must be blue.');
         }
     }
 }

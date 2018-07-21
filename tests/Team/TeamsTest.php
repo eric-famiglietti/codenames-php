@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\Codenames\Game;
+namespace Tests\Codenames\Team;
 
-use Codenames\Game\GameException;
-use Codenames\Game\GameTeams;
 use Codenames\Team\Team;
+use Codenames\Team\TeamException;
 use Codenames\Team\TeamFactory;
+use Codenames\Team\Teams;
 use PHPUnit\Framework\TestCase;
 
-final class GameTeamsTest extends TestCase
+final class TeamsTest extends TestCase
 {
     /** @var Team */
     private $redTeam;
@@ -30,35 +30,35 @@ final class GameTeamsTest extends TestCase
 
     public function testItThrowsAnExceptionIfTheRedTeamIsNotRed(): void
     {
-        $this->expectException(GameException::class);
+        $this->expectException(TeamException::class);
 
-        new GameTeams($this->blueTeam, $this->blueTeam);
+        new Teams($this->blueTeam, $this->blueTeam);
     }
 
     public function testItThrowsAnExceptionIfTheBlueTeamIsNotBlue(): void
     {
-        $this->expectException(GameException::class);
+        $this->expectException(TeamException::class);
 
-        new GameTeams($this->redTeam, $this->redTeam);
+        new Teams($this->redTeam, $this->redTeam);
     }
 
-    public function testItCreatesAGameTeams(): void
+    public function testItCreatesATeams(): void
     {
-        $teams = new GameTeams($this->redTeam, $this->blueTeam);
+        $teams = new Teams($this->redTeam, $this->blueTeam);
 
-        $this->assertInstanceOf(GameTeams::class, $teams);
+        $this->assertInstanceOf(Teams::class, $teams);
     }
 
     public function testItGetsTheRedTeam(): void
     {
-        $teams = new GameTeams($this->redTeam, $this->blueTeam);
+        $teams = new Teams($this->redTeam, $this->blueTeam);
 
         $this->assertEquals($this->redTeam, $teams->getRedTeam());
     }
 
     public function testItGetsTheBlueTeam(): void
     {
-        $teams = new GameTeams($this->redTeam, $this->blueTeam);
+        $teams = new Teams($this->redTeam, $this->blueTeam);
 
         $this->assertEquals($this->blueTeam, $teams->getBlueTeam());
     }

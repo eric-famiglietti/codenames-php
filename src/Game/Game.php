@@ -6,10 +6,11 @@ namespace Codenames\Game;
 
 use Codenames\Keycard\Keycard;
 use Codenames\Team\Team;
+use Codenames\Team\Teams;
 
 class Game
 {
-    /** @var GameTeams */
+    /** @var Teams */
     private $teams;
 
     /** @var Keycard */
@@ -18,10 +19,10 @@ class Game
     /**
      * Create a new game instance.
      *
-     * @param GameTeams $teams
-     * @param Keycard   $keycard
+     * @param Teams   $teams
+     * @param Keycard $keycard
      */
-    public function __construct(GameTeams $teams, Keycard $keycard)
+    public function __construct(Teams $teams, Keycard $keycard)
     {
         $this->teams = $teams;
         $this->keycard = $keycard;

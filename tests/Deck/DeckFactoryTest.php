@@ -10,7 +10,14 @@ use PHPUnit\Framework\TestCase;
 
 final class DeckFactoryTest extends TestCase
 {
-    public function testItCreatesADeck(): void
+    public function testItCreatesADeckFactory(): void
+    {
+        $factory = new DeckFactory();
+
+        $this->assertInstanceOf(DeckFactory::class, $factory);
+    }
+
+    public function testItMakesADeck(): void
     {
         $factory = new DeckFactory();
 

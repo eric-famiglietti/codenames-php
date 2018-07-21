@@ -10,7 +10,14 @@ use PHPUnit\Framework\TestCase;
 
 final class KeycardFactoryTest extends TestCase
 {
-    public function testItCreatesAKeycard(): void
+    public function testItCreatesAKeycardFactory(): void
+    {
+        $factory = new KeycardFactory();
+
+        $this->assertInstanceOf(KeycardFactory::class, $factory);
+    }
+
+    public function testItMakesAKeycard(): void
     {
         $factory = new KeycardFactory();
 

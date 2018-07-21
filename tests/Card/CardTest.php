@@ -9,6 +9,13 @@ use PHPUnit\Framework\TestCase;
 
 final class CardTest extends TestCase
 {
+    public function testItCreatesACard(): void
+    {
+        $card = new Card('Orangutan');
+
+        $this->assertInstanceOf(Card::class, $card);
+    }
+
     public function testItReturnsTheCodename(): void
     {
         $card = new Card('Orangutan');

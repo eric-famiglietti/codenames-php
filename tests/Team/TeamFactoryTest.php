@@ -25,7 +25,7 @@ final class TeamFactoryTest extends TestCase
         $this->assertInstanceOf(TeamFactory::class, $this->factory);
     }
 
-    public function testItCreatesATeam(): void
+    public function testItMakesATeam(): void
     {
         $team = $this->factory->makeRedTeam('Eric', 'Myles');
 

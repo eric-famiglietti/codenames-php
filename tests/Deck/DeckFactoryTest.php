@@ -17,7 +17,7 @@ final class DeckFactoryTest extends TestCase
         $this->assertInstanceOf(DeckFactory::class, $factory);
     }
 
-    public function testItCreatesADeck(): void
+    public function testItMakesADeck(): void
     {
         $factory = new DeckFactory();
 

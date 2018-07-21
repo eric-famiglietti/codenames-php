@@ -17,7 +17,7 @@ final class KeycardFactoryTest extends TestCase
         $this->assertInstanceOf(KeycardFactory::class, $factory);
     }
 
-    public function testItCreatesAKeycard(): void
+    public function testItMakesAKeycard(): void
     {
         $factory = new KeycardFactory();
 

@@ -25,7 +25,7 @@ final class PlayerFactoryTest extends TestCase
         $this->assertInstanceOf(PlayerFactory::class, $this->factory);
     }
 
-    public function testItCreatesAPlayer(): void
+    public function testItMakesAPlayer(): void
     {
         $player = $this->factory->makeSpymaster('Eric');
 

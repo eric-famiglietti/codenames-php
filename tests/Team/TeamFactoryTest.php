@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Codenames\Team;
 
+use Codenames\Team\Team;
 use Codenames\Team\TeamFactory;
 use PHPUnit\Framework\TestCase;
 
@@ -22,6 +23,13 @@ final class TeamFactoryTest extends TestCase
     public function testItCreatesATeamFactory(): void
     {
         $this->assertInstanceOf(TeamFactory::class, $this->factory);
+    }
+
+    public function testItCreatesATeam(): void
+    {
+        $team = $this->factory->makeRedTeam('Eric', 'Myles');
+
+        $this->assertInstanceOf(Team::class, $team);
     }
 
     public function testItMakesARedTeam(): void

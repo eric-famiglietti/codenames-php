@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace Tests\Codenames\Team;
+namespace Tests\Codenames\Player;
 
 use Codenames\Player\Player;
+use Codenames\Player\PlayerException;
 use Codenames\Player\PlayerFactory;
-use Codenames\Team\TeamException;
-use Codenames\Team\TeamPlayers;
+use Codenames\Player\Players;
 use PHPUnit\Framework\TestCase;
 
-final class TeamPlayersTest extends TestCase
+final class PlayersTest extends TestCase
 {
     /** @var Player */
     private $spymaster;
@@ -30,35 +30,35 @@ final class TeamPlayersTest extends TestCase
 
     public function testItThrowsAnExceptionIfThePlayerIsNotASpymaster(): void
     {
-        $this->expectException(TeamException::class);
+        $this->expectException(PlayerException::class);
 
-        new TeamPlayers($this->operative, $this->operative);
+        new Players($this->operative, $this->operative);
     }
 
     public function testItThrowsAnExceptionIfThePlayerIsNotAnOperative(): void
     {
-        $this->expectException(TeamException::class);
+        $this->expectException(PlayerException::class);
 
-        new TeamPlayers($this->spymaster, $this->spymaster);
+        new Players($this->spymaster, $this->spymaster);
     }
 
-    public function testItCreatesATeamPlayers(): void
+    public function testItCreatesAPlayers(): void
     {
-        $players = new TeamPlayers($this->spymaster, $this->operative);
+        $players = new Players($this->spymaster, $this->operative);
 
-        $this->assertInstanceOf(TeamPlayers::class, $players);
+        $this->assertInstanceOf(Players::class, $players);
     }
 
     public function testItGetsTheSpymaster(): void
     {
-        $players = new TeamPlayers($this->spymaster, $this->operative);
+        $players = new Players($this->spymaster, $this->operative);
 
         $this->assertEquals($this->spymaster, $players->getSpymaster());
     }
 
     public function testItGetsTheOperative(): void
     {
-        $players = new TeamPlayers($this->spymaster, $this->operative);
+        $players = new Players($this->spymaster, $this->operative);
 
         $this->assertEquals($this->operative, $players->getOperative());
     }

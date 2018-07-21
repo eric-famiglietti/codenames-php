@@ -2,11 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Codenames\Team;
+namespace Codenames\Player;
 
-use Codenames\Player\Player;
-
-class TeamPlayers
+class Players
 {
     /** @var Player */
     private $spymaster;
@@ -20,8 +18,8 @@ class TeamPlayers
      * @param Player $spymaster
      * @param Player $operative
      *
-     * @throws TeamException if the player is not a spymaster
-     * @throws TeamException if the player is not an operative
+     * @throws PlayerException if the player is not a spymaster
+     * @throws PlayerException if the player is not an operative
      */
     public function __construct(Player $spymaster, Player $operative)
     {
@@ -55,24 +53,24 @@ class TeamPlayers
     /**
      * @param Player $player
      *
-     * @throws TeamException if the player is not a spymaster
+     * @throws PlayerException if the player is not a spymaster
      */
     private function checkSpymaster(Player $player): void
     {
         if (!$player->getRole()->isSpymaster()) {
-            throw new TeamException('Player must be a spymaster.');
+            throw new PlayerException('Player must be a spymaster.');
         }
     }
 
     /**
      * @param Player $player
      *
-     * @throws TeamException if the player is not an operative
+     * @throws PlayerException if the player is not an operative
      */
     private function checkOperative(Player $player): void
     {
         if (!$player->getRole()->isOperative()) {
-            throw new TeamException('Player must be an operative.');
+            throw new PlayerException('Player must be an operative.');
         }
     }
 }

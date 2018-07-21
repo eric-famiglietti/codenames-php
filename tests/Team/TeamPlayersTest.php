@@ -5,58 +5,61 @@ declare(strict_types=1);
 namespace Tests\Codenames\Team;
 
 use Codenames\Player\Player;
-use Codenames\Player\PlayerRoles;
+use Codenames\Player\PlayerFactory;
 use Codenames\Team\TeamException;
 use Codenames\Team\TeamPlayers;
 use PHPUnit\Framework\TestCase;
 
 final class TeamPlayersTest extends TestCase
 {
+    /** @var Player */
+    private $spymaster;
+
+    /** @var Player */
+    private $operative;
+
+    public function setUp(): void
+    {
+        parent::setUp();
+
+        $factory = new PlayerFactory();
+
+        $this->spymaster = $factory->makeSpymaster('Eric');
+        $this->operative = $factory->makeOperative('Myles');
+    }
+
     public function testItThrowsAnExceptionIfThePlayerIsNotASpymaster(): void
     {
         $this->expectException(TeamException::class);
 
-        $operative = new Player('Eric', PlayerRoles::OPERATIVE);
-
-        new TeamPlayers($operative, $operative);
+        new TeamPlayers($this->operative, $this->operative);
     }
 
     public function testItThrowsAnExceptionIfThePlayerIsNotAnOperative(): void
     {
         $this->expectException(TeamException::class);
 
-        $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
-
-        new TeamPlayers($spymaster, $spymaster);
+        new TeamPlayers($this->spymaster, $this->spymaster);
     }
 
     public function testItCreatesATeamPlayers(): void
     {
-        $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
-        $operative = new Player('Myles', PlayerRoles::OPERATIVE);
-
-        $players = new TeamPlayers($spymaster, $operative);
+        $players = new TeamPlayers($this->spymaster, $this->operative);
 
         $this->assertInstanceOf(TeamPlayers::class, $players);
     }
 
     public function testItGetsTheSpymaster(): void
     {
-        $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
-        $operative = new Player('Myles', PlayerRoles::OPERATIVE);
+        $players = new TeamPlayers($this->spymaster, $this->operative);
 
-        $players = new TeamPlayers($spymaster, $operative);
-
-        $this->assertEquals($spymaster, $players->getSpymaster());
+        $this->assertEquals($this->spymaster, $players->getSpymaster());
     }
 
     public function testItGetsTheOperative(): void
     {
-        $spymaster = new Player('Eric', PlayerRoles::SPYMASTER);
-        $operative = new Player('Myles', PlayerRoles::OPERATIVE);
+        $players = new TeamPlayers($this->spymaster, $this->operative);
 
-        $players = new TeamPlayers($spymaster, $operative);
-
-        $this->assertEquals($operative, $players->getOperative());
+        $this->assertEquals($this->operative, $players->getOperative());
     }
 }

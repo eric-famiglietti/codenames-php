@@ -14,6 +14,8 @@ class DeckFactory
      * @param array $words
      *
      * @return Deck
+     *
+     * @throws DeckException if the words array is empty
      */
     public function makeDeck(array $words): Deck
     {

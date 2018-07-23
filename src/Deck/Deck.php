@@ -45,6 +45,8 @@ class Deck
      * Add a card to the top of the deck.
      *
      * @return Card
+     *
+     * @throws DeckException if the deck is empty
      */
     public function drawCard(): Card
     {

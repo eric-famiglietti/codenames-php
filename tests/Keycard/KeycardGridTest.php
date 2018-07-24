@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Tests\Codenames\Keycard;
 
+use Codenames\Dimension\Dimensions;
 use Codenames\Keycard\KeycardException;
 use Codenames\Keycard\KeycardGrid;
-use Codenames\Keycard\KeycardGridDimensions;
 use PHPUnit\Framework\TestCase;
 
 final class KeycardGridTest extends TestCase
@@ -24,7 +24,7 @@ final class KeycardGridTest extends TestCase
     {
         $this->expectException(KeycardException::class);
 
-        $dimensions = new KeycardGridDimensions(2, 2);
+        $dimensions = new Dimensions(2, 2);
         $grid = [[0], [0]];
 
         new KeycardGrid($dimensions, $grid);
@@ -34,7 +34,7 @@ final class KeycardGridTest extends TestCase
     {
         $this->expectException(KeycardException::class);
 
-        $dimensions = new KeycardGridDimensions(2, 2);
+        $dimensions = new Dimensions(2, 2);
         $grid = [[0]];
 
         new KeycardGrid($dimensions, $grid);
@@ -44,7 +44,7 @@ final class KeycardGridTest extends TestCase
     {
         $this->expectException(KeycardException::class);
 
-        $dimensions = new KeycardGridDimensions(1, 1);
+        $dimensions = new Dimensions(1, 1);
         $grid = [[self::INVALID_VALUE]];
 
         new KeycardGrid($dimensions, $grid);
@@ -52,7 +52,7 @@ final class KeycardGridTest extends TestCase
 
     public function testItCreatesAKeycardGrid(): void
     {
-        $dimensions = new KeycardGridDimensions(2, 2);
+        $dimensions = new Dimensions(2, 2);
         $grid = [[0, 0], [0, 0]];
 
         $keycardGrid = new KeycardGrid($dimensions, $grid);
@@ -64,7 +64,7 @@ final class KeycardGridTest extends TestCase
     {
         $this->expectException(KeycardException::class);
 
-        $dimensions = new KeycardGridDimensions(2, 2);
+        $dimensions = new Dimensions(2, 2);
         $grid = [[0, 0], [0, 0]];
         $keycardGrid = new KeycardGrid($dimensions, $grid);
 
@@ -75,7 +75,7 @@ final class KeycardGridTest extends TestCase
     {
         $this->expectException(KeycardException::class);
 
-        $dimensions = new KeycardGridDimensions(2, 2);
+        $dimensions = new Dimensions(2, 2);
         $grid = [[0, 0], [0, 0]];
         $keycardGrid = new KeycardGrid($dimensions, $grid);
 
@@ -84,7 +84,7 @@ final class KeycardGridTest extends TestCase
 
     public function testItGetsTheValue(): void
     {
-        $dimensions = new KeycardGridDimensions(2, 2);
+        $dimensions = new Dimensions(2, 2);
         $grid = [[0, 0], [0, 1]];
         $keycardGrid = new KeycardGrid($dimensions, $grid);
 

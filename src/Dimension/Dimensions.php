@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Codenames\Keycard;
+namespace Codenames\Dimension;
 
-class KeycardGridDimensions
+class Dimensions
 {
     /** @var int */
     private $width;
@@ -13,13 +13,13 @@ class KeycardGridDimensions
     private $height;
 
     /**
-     * Create a new keycard grid dimensions instance.
+     * Create a new dimensions instance.
      *
      * @param int $width
      * @param int $height
      *
-     * @throws KeycardException if the width is not a positive integer
-     * @throws KeycardException if the height is not a positive integer
+     * @throws DimensionException if the width is not a positive integer
+     * @throws DimensionException if the height is not a positive integer
      */
     public function __construct(int $width, int $height)
     {
@@ -53,24 +53,24 @@ class KeycardGridDimensions
     /**
      * @param int $width
      *
-     * @throws KeycardException if the width is not a positive integer
+     * @throws DimensionException if the width is not a positive integer
      */
     private function checkWidth(int $width): void
     {
         if ($width < 1) {
-            throw new KeycardException('Width must be a positive integer.');
+            throw new DimensionException('Width must be a positive integer.');
         }
     }
 
     /**
      * @param int $height
      *
-     * @throws KeycardException if the height is not a positive integer
+     * @throws DimensionException if the height is not a positive integer
      */
     private function checkHeight(int $height): void
     {
         if ($height < 1) {
-            throw new KeycardException('Height must be a positive integer.');
+            throw new DimensionException('Height must be a positive integer.');
         }
     }
 }

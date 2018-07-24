@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace Codenames\Keycard;
 
+use Codenames\Dimension\Dimensions;
+
 class KeycardGrid
 {
-    /** @var KeycardGridDimensions */
+    /** @var Dimensions */
     private $dimensions;
 
     /** @var array */
@@ -15,14 +17,14 @@ class KeycardGrid
     /**
      * Create a new keycard grid instance.
      *
-     * @param KeycardGridDimensions $dimensions
-     * @param array                 $grid
+     * @param Dimensions $dimensions
+     * @param array      $grid
      *
      * @throws KeycardException if the grid width does not match the dimensions width
      * @throws KeycardException if the grid height does not match the dimensions height
      * @throws KeycardException if the grid values are not valid keycard values
      */
-    public function __construct(KeycardGridDimensions $dimensions, array $grid)
+    public function __construct(Dimensions $dimensions, array $grid)
     {
         $this->checkGridWidth($grid, $dimensions);
         $this->checkGridHeight($grid, $dimensions);
@@ -52,12 +54,12 @@ class KeycardGrid
     }
 
     /**
-     * @param array                 $grid
-     * @param KeycardGridDimensions $dimensions
+     * @param array      $grid
+     * @param Dimensions $dimensions
      *
      * @throws KeycardException if the grid width does not match the dimensions width
      */
-    private function checkGridWidth(array $grid, KeycardGridDimensions $dimensions): void
+    private function checkGridWidth(array $grid, Dimensions $dimensions): void
     {
         if (count($grid) !== $dimensions->getWidth()) {
             throw new KeycardException('Grid width does not match dimensions width.');
@@ -65,12 +67,12 @@ class KeycardGrid
     }
 
     /**
-     * @param array                 $grid
-     * @param KeycardGridDimensions $dimensions
+     * @param array      $grid
+     * @param Dimensions $dimensions
      *
      * @throws KeycardException if the grid height does not match the dimensions height
      */
-    private function checkGridHeight(array $grid, KeycardGridDimensions $dimensions): void
+    private function checkGridHeight(array $grid, Dimensions $dimensions): void
     {
         $height = $dimensions->getHeight();
 

@@ -6,6 +6,7 @@ namespace Codenames\Keycard;
 
 use Codenames\Color\Color;
 use Codenames\Color\ColorValues;
+use Codenames\Dimension\Dimensions;
 
 class KeycardFactory
 {
@@ -60,7 +61,7 @@ class KeycardFactory
      */
     private function makeKeycardGrid(Color $color): KeycardGrid
     {
-        $dimensions = $this->makeKeycardDimensions();
+        $dimensions = $this->makeDimensions();
 
         $grid = $this->makeGrid();
         $grid = $this->populateGrid($grid, $color);
@@ -69,11 +70,11 @@ class KeycardFactory
     }
 
     /**
-     * @return KeycardGridDimensions
+     * @return Dimensions
      */
-    private function makeKeycardDimensions(): KeycardGridDimensions
+    private function makeDimensions(): Dimensions
     {
-        return new KeycardGridDimensions(self::DEFAULT_WIDTH, self::DEFAULT_HEIGHT);
+        return new Dimensions(self::DEFAULT_WIDTH, self::DEFAULT_HEIGHT);
     }
 
     /**

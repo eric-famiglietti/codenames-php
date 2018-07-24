@@ -93,6 +93,7 @@ class KeycardFactory
     }
 
     /**
+     * @param array $grid
      * @param Color $color
      *
      * @return array

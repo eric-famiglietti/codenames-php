@@ -38,6 +38,7 @@
     },
     "scripts": {
         "lint": "./vendor/bin/php-cs-fixer fix --config=.php_cs.dist",
+        "stan": "./vendor/bin/phpstan",
         "test": "./vendor/bin/phpunit"
     }
 }

@@ -14,43 +14,37 @@ class DeckFactory
      * @param array $words
      *
      * @return Deck
-     *
-     * @throws DeckException if the words array is empty
      */
     public function makeDeck(array $words): Deck
     {
-        $this->checkWords($words);
+        $cards = $this->makeCards($words);
 
-        $deck = new Deck();
-
-        return $this->makeAndAddCardsToDeck($deck, $words);
+        return new Deck($cards);
     }
 
     /**
      * @param array $words
      *
-     * @throws DeckException if the words array is empty
+     * @return array
      */
-    private function checkWords(array $words): void
+    private function makeCards(array $words): array
     {
-        if (empty($words)) {
-            throw new DeckException('Words must not be empty.');
-        }
-    }
+        $cards = [];
 
-    /**
-     * @param Deck  $deck
-     * @param array $words
-     *
-     * @return Deck
-     */
-    private function makeAndAddCardsToDeck(Deck $deck, array $words): Deck
-    {
         foreach ($words as $word) {
-            $card = new Card($word);
-            $deck->addCard($card);
+            $cards[] = $this->makeWord($word);
         }
 
-        return $deck;
+        return $cards;
+    }
+
+    /**
+     * @param string $word
+     *
+     * @return Card
+     */
+    private function makeWord(string $word): Card
+    {
+        return new Card($word);
     }
 }

@@ -60,7 +60,7 @@ class Deck
      */
     private function checkCount(): void
     {
-        if (count($this->cards) < 1) {
+        if (empty($this->cards)) {
             throw new DeckException('Cannot draw from an empty deck.');
         }
     }

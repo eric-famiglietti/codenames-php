@@ -11,27 +11,34 @@ use PHPUnit\Framework\TestCase;
 
 final class DeckTest extends TestCase
 {
-    public function testItCreatesADeck(): void
+    public function testItThrowsAnExceptionIfCardsIsEmpty(): void
     {
-        $deck = new Deck();
+        $this->expectException(DeckException::class);
 
-        $this->assertInstanceOf(Deck::class, $deck);
+        new Deck([]);
     }
 
-    public function testItGetsTheNumberOfCardsInTheDeck(): void
+    public function testItThrowsAnExceptionIfCardsContainsANonString(): void
     {
-        $deck = new Deck();
-        $deck->addCard(new Card('Tokyo'));
+        $this->expectException(DeckException::class);
 
-        $this->assertEquals(1, $deck->count());
+        new Deck([1]);
+    }
+
+    public function testItCreatesADeck(): void
+    {
+        $cards = [new Card('Apple')];
+        $deck = new Deck($cards);
+
+        $this->assertInstanceOf(Deck::class, $deck);
     }
 
     public function testItThrowsAnExceptionIfThereAreNoCardsLeftTodrawCard(): void
     {
         $this->expectException(DeckException::class);
 
-        $deck = new Deck();
-        $deck->addCard(new Card('Tokyo'));
+        $cards = [new Card('Tokyo')];
+        $deck = new Deck($cards);
 
         $deck->drawCard();
         $deck->drawCard();
@@ -39,9 +46,9 @@ final class DeckTest extends TestCase
 
     public function testItGetsACardFromTheDeck(): void
     {
-        $deck = new Deck();
         $card = new Card('Tokyo');
-        $deck->addCard($card);
+        $cards = [$card];
+        $deck = new Deck($cards);
 
         $this->assertEquals($card, $deck->drawCard());
     }

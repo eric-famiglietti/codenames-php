@@ -14,21 +14,17 @@ class Deck
     /**
      * Create a new deck instance.
      *
-     * @param Card $card
-     */
-    public function addCard(Card $card): void
-    {
-        $this->cards[] = $card;
-    }
-
-    /**
-     * Get the number of cards in the deck.
+     * @param array $cards
      *
-     * @return int
+     * @throws DeckException if the words array is empty
+     * @throws DeckException if the words array contains a non-string
      */
-    public function count(): int
+    public function __construct(array $cards)
     {
-        return count($this->cards);
+        $this->checkCardsCount($cards);
+        $this->checkCards($cards);
+
+        $this->cards = $cards;
     }
 
     /**
@@ -42,7 +38,7 @@ class Deck
     }
 
     /**
-     * Add a card to the top of the deck.
+     * Draw a card from the top of the deck.
      *
      * @return Card
      *
@@ -56,11 +52,37 @@ class Deck
     }
 
     /**
+     * @param array $cards
+     *
+     * @throws DeckException if the words array is empty
+     */
+    private function checkCardsCount(array $cards): void
+    {
+        if (empty($cards)) {
+            throw new DeckException('Cards must not be empty.');
+        }
+    }
+
+    /**
+     * @param array $cards
+     *
+     * @throws DeckException if the words array contains a non-string
+     */
+    private function checkCards(array $cards): void
+    {
+        foreach ($cards as $card) {
+            if (!$card instanceof Card) {
+                throw new DeckException('Invalid cards value.');
+            }
+        }
+    }
+
+    /**
      * @throws DeckException if the deck is empty
      */
     private function checkCount(): void
     {
-        if (count($this->cards) < 1) {
+        if (empty($this->cards)) {
             throw new DeckException('Cannot draw from an empty deck.');
         }
     }

@@ -1,0 +1,6 @@
+parameters:
+    excludes_analyse:
+        - %rootDir%/../../../vendor/
+    level: max
+    paths:
+        - %rootDir%/../../../

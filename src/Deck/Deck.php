@@ -42,7 +42,7 @@ class Deck
     }
 
     /**
-     * Add a card to the top of the deck.
+     * Draw a card from the top of the deck.
      *
      * @return Card
      *

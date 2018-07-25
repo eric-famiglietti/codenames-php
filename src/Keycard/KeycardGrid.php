@@ -93,7 +93,7 @@ class KeycardGrid
         foreach ($grid as $column) {
             foreach ($column as $value) {
                 if (!KeycardValues::isValidValue($value)) {
-                    throw new KeycardException('Invalid value.');
+                    throw new KeycardException('Invalid keycard value.');
                 }
             }
         }

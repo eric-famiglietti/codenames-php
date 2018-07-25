@@ -77,7 +77,7 @@ class Color
     private function checkValue(int $value): void
     {
         if (!ColorValues::isValidValue($value)) {
-            throw new ColorException('Invalid color.');
+            throw new ColorException('Invalid color value.');
         }
     }
 }

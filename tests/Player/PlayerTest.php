@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Tests\Codenames\Player;
 
 use Codenames\Player\Player;
+use Codenames\Player\PlayerException;
 use Codenames\Role\Role;
 use Codenames\Role\RoleValues;
 use PHPUnit\Framework\TestCase;
@@ -13,6 +14,15 @@ final class PlayerTest extends TestCase
 {
     /** @var int */
     const INVALID_ROLE = 2;
+
+    public function testItThrowsAnExceptionIfTheNameIsEmpty(): void
+    {
+        $this->expectException(PlayerException::class);
+
+        $role = new Role(RoleValues::SPYMASTER);
+
+        new Player('', $role);
+    }
 
     public function testItCreatesAPlayer(): void
     {

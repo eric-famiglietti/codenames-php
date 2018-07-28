@@ -4,33 +4,24 @@ declare(strict_types=1);
 
 namespace Codenames\Keycard;
 
-use Codenames\Dimension\Dimensions;
+use Codenames\Grid\Grid;
 
 class KeycardGrid
 {
-    /** @var Dimensions */
-    private $dimensions;
-
-    /** @var array */
-    private $grid = [];
+    /** @var Grid */
+    private $grid;
 
     /**
      * Create a new keycard grid instance.
      *
-     * @param Dimensions $dimensions
-     * @param array      $grid
+     * @param Grid $grid
      *
-     * @throws KeycardException if the grid width does not match the dimensions width
-     * @throws KeycardException if the grid height does not match the dimensions height
-     * @throws KeycardException if the grid values are not valid keycard values
+     * @throws KeycardException if the grid values are not keycard values
      */
-    public function __construct(Dimensions $dimensions, array $grid)
+    public function __construct(Grid $grid)
     {
-        $this->checkGridWidth($grid, $dimensions);
-        $this->checkGridHeight($grid, $dimensions);
-        $this->checkGridValues($grid);
+        $this->checkValues($grid->getValues());
 
-        $this->dimensions = $dimensions;
         $this->grid = $grid;
     }
 
@@ -50,47 +41,19 @@ class KeycardGrid
         $this->checkX($x);
         $this->checkY($y);
 
-        return $this->grid[$x][$y];
+        $values = $this->grid->getValues();
+
+        return $values[$x][$y];
     }
 
     /**
-     * @param array      $grid
-     * @param Dimensions $dimensions
+     * @param array $values
      *
-     * @throws KeycardException if the grid width does not match the dimensions width
+     * @throws KeycardException if the grid values are not keycard values
      */
-    private function checkGridWidth(array $grid, Dimensions $dimensions): void
+    private function checkValues(array $values): void
     {
-        if (count($grid) !== $dimensions->getWidth()) {
-            throw new KeycardException('Grid width does not match dimensions width.');
-        }
-    }
-
-    /**
-     * @param array      $grid
-     * @param Dimensions $dimensions
-     *
-     * @throws KeycardException if the grid height does not match the dimensions height
-     */
-    private function checkGridHeight(array $grid, Dimensions $dimensions): void
-    {
-        $height = $dimensions->getHeight();
-
-        foreach ($grid as $column) {
-            if (count($column) !== $height) {
-                throw new KeycardException('Grid height does not match dimensions height.');
-            }
-        }
-    }
-
-    /**
-     * @param array $grid
-     *
-     * @throws KeycardException if the grid values are not valid keycard values
-     */
-    private function checkGridValues(array $grid): void
-    {
-        foreach ($grid as $column) {
+        foreach ($values as $column) {
             foreach ($column as $value) {
                 if (!KeycardValues::isValidValue($value)) {
                     throw new KeycardException('Invalid keycard value.');
@@ -106,7 +69,9 @@ class KeycardGrid
      */
     private function checkX(int $x): void
     {
-        if ($x < 0 || $x >= $this->dimensions->getWidth()) {
+        $dimensions = $this->grid->getDimensions();
+
+        if (!$dimensions->isValidX($x)) {
             throw new KeycardException('X value out of bounds.');
         }
     }
@@ -118,7 +83,9 @@ class KeycardGrid
      */
     private function checkY(int $y): void
     {
-        if ($y < 0 || $y >= $this->dimensions->getHeight()) {
+        $dimensions = $this->grid->getDimensions();
+
+        if (!$dimensions->isValidY($y)) {
             throw new KeycardException('Y value out of bounds.');
         }
     }

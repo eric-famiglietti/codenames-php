@@ -7,6 +7,7 @@ namespace Codenames\Keycard;
 use Codenames\Color\Color;
 use Codenames\Color\ColorValues;
 use Codenames\Dimension\Dimensions;
+use Codenames\Grid\Grid;
 
 class KeycardFactory
 {
@@ -63,10 +64,12 @@ class KeycardFactory
     {
         $dimensions = $this->makeDimensions();
 
-        $grid = $this->makeGrid();
-        $grid = $this->populateGrid($grid, $color);
+        $values = $this->makeValues();
+        $values = $this->populateValues($values, $color);
 
-        return new KeycardGrid($dimensions, $grid);
+        $grid = $this->makeGrid($dimensions, $values);
+
+        return new KeycardGrid($grid);
     }
 
     /**
@@ -80,35 +83,35 @@ class KeycardFactory
     /**
      * @return array
      */
-    private function makeGrid(): array
+    private function makeValues(): array
     {
-        $grid = [];
+        $values = [];
 
         foreach (range(0, self::DEFAULT_WIDTH - 1) as $x) {
             foreach (range(0, self::DEFAULT_HEIGHT - 1) as $y) {
-                $grid[$x][$y] = self::DEFAULT_VALUE;
+                $values[$x][$y] = self::DEFAULT_VALUE;
             }
         }
 
-        return $grid;
+        return $values;
     }
 
     /**
-     * @param array $grid
+     * @param array $values
      * @param Color $color
      *
      * @return array
      */
-    private function populateGrid(array $grid, Color $color): array
+    private function populateValues(array $values, Color $color): array
     {
         $redsCount = $this->calculateRedsCount($color);
         $bluesCount = $this->calculateBluesCount($color);
 
-        $grid = $this->placeValuesRandomly($grid, KeycardValues::RED, $redsCount);
-        $grid = $this->placeValuesRandomly($grid, KeycardValues::BLUE, $bluesCount);
-        $grid = $this->placeValuesRandomly($grid, KeycardValues::ASSASSIN, self::ASSASSINS_COUNT);
+        $values = $this->placeValuesRandomly($values, KeycardValues::RED, $redsCount);
+        $values = $this->placeValuesRandomly($values, KeycardValues::BLUE, $bluesCount);
+        $values = $this->placeValuesRandomly($values, KeycardValues::ASSASSIN, self::ASSASSINS_COUNT);
 
-        return $grid;
+        return $values;
     }
 
     /**
@@ -140,38 +143,49 @@ class KeycardFactory
     }
 
     /**
-     * @param array $grid
+     * @param array $values
      * @param int   $value
      * @param int   $count
      *
      * @return array
      */
-    private function placeValuesRandomly(array $grid, int $value, int $count): array
+    private function placeValuesRandomly(array $values, int $value, int $count): array
     {
         foreach (range(0, $count - 1) as $i) {
-            $grid = $this->placeValueRandomly($grid, $value);
+            $values = $this->placeValueRandomly($values, $value);
         }
 
-        return $grid;
+        return $values;
     }
 
     /**
-     * @param array $grid
+     * @param array $values
      * @param int   $value
      *
      * @return array
      */
-    private function placeValueRandomly(array $grid, int $value): array
+    private function placeValueRandomly(array $values, int $value): array
     {
         while (true) {
             $x = rand(0, self::DEFAULT_WIDTH - 1);
             $y = rand(0, self::DEFAULT_HEIGHT - 1);
 
-            if (self::DEFAULT_VALUE === $grid[$x][$y]) {
-                $grid[$x][$y] = $value;
+            if (self::DEFAULT_VALUE === $values[$x][$y]) {
+                $values[$x][$y] = $value;
 
-                return $grid;
+                return $values;
             }
         }
+    }
+
+    /**
+     * @param Dimensions $dimensions
+     * @param array      $values
+     *
+     * @return Grid
+     */
+    private function makeGrid(Dimensions $dimensions, array $values): Grid
+    {
+        return new Grid($dimensions, $values);
     }
 }

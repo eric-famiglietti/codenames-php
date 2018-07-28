@@ -59,9 +59,9 @@ final class CardGridTest extends TestCase
         $card = new Card('Pizza');
         $grid = [[$card, $card], [$card, $card]];
 
-        $keycardGrid = new CardGrid($dimensions, $grid);
+        $cardGrid = new CardGrid($dimensions, $grid);
 
-        $this->assertInstanceOf(CardGrid::class, $keycardGrid);
+        $this->assertInstanceOf(CardGrid::class, $cardGrid);
     }
 
     public function testItThrowsAnExceptionIfTheXValueIsOutOfBounds(): void
@@ -71,9 +71,9 @@ final class CardGridTest extends TestCase
         $dimensions = new Dimensions(2, 2);
         $card = new Card('Pizza');
         $grid = [[$card, $card], [$card, $card]];
-        $keycardGrid = new CardGrid($dimensions, $grid);
+        $cardGrid = new CardGrid($dimensions, $grid);
 
-        $keycardGrid->getValue(self::INVALID_X, 1);
+        $cardGrid->getValue(self::INVALID_X, 1);
     }
 
     public function testItThrowsAnExceptionIfTheYValueIsOutOfBounds(): void
@@ -83,9 +83,9 @@ final class CardGridTest extends TestCase
         $dimensions = new Dimensions(2, 2);
         $card = new Card('Pizza');
         $grid = [[$card, $card], [$card, $card]];
-        $keycardGrid = new CardGrid($dimensions, $grid);
+        $cardGrid = new CardGrid($dimensions, $grid);
 
-        $keycardGrid->getValue(1, self::INVALID_Y);
+        $cardGrid->getValue(1, self::INVALID_Y);
     }
 
     public function testItGetsTheValue(): void
@@ -93,8 +93,8 @@ final class CardGridTest extends TestCase
         $dimensions = new Dimensions(1, 1);
         $card = new Card('Pizza');
         $grid = [[$card]];
-        $keycardGrid = new CardGrid($dimensions, $grid);
+        $cardGrid = new CardGrid($dimensions, $grid);
 
-        $this->assertEquals($card, $keycardGrid->getValue(0, 0));
+        $this->assertEquals($card, $cardGrid->getValue(0, 0));
     }
 }

@@ -4,33 +4,24 @@ declare(strict_types=1);
 
 namespace Codenames\Card;
 
-use Codenames\Dimension\Dimensions;
+use Codenames\Grid\Grid;
 
 class CardGrid
 {
-    /** @var Dimensions */
-    private $dimensions;
-
-    /** @var array */
-    private $grid = [];
+    /** @var Grid */
+    private $grid;
 
     /**
      * Create a new card grid instance.
      *
-     * @param Dimensions $dimensions
-     * @param array      $grid
+     * @param Grid $grid
      *
-     * @throws CardException if the grid width does not match the dimensions width
-     * @throws CardException if the grid height does not match the dimensions height
-     * @throws CardException if the grid values are not valid card values
+     * @throws CardException if the grid values are not card objects
      */
-    public function __construct(Dimensions $dimensions, array $grid)
+    public function __construct(Grid $grid)
     {
-        $this->checkGridWidth($grid, $dimensions);
-        $this->checkGridHeight($grid, $dimensions);
-        $this->checkGridValues($grid);
+        $this->checkValues($grid->getValues());
 
-        $this->dimensions = $dimensions;
         $this->grid = $grid;
     }
 
@@ -50,47 +41,19 @@ class CardGrid
         $this->checkX($x);
         $this->checkY($y);
 
-        return $this->grid[$x][$y];
+        $values = $this->grid->getValues();
+
+        return $values[$x][$y];
     }
 
     /**
-     * @param array      $grid
-     * @param Dimensions $dimensions
+     * @param array $values
      *
-     * @throws CardException if the grid width does not match the dimensions width
+     * @throws CardException if the grid values are not card objects
      */
-    private function checkGridWidth(array $grid, Dimensions $dimensions): void
+    private function checkValues(array $values): void
     {
-        if (count($grid) !== $dimensions->getWidth()) {
-            throw new CardException('Grid width does not match dimensions width.');
-        }
-    }
-
-    /**
-     * @param array      $grid
-     * @param Dimensions $dimensions
-     *
-     * @throws CardException if the grid height does not match the dimensions height
-     */
-    private function checkGridHeight(array $grid, Dimensions $dimensions): void
-    {
-        $height = $dimensions->getHeight();
-
-        foreach ($grid as $column) {
-            if (count($column) !== $height) {
-                throw new CardException('Grid height does not match dimensions height.');
-            }
-        }
-    }
-
-    /**
-     * @param array $grid
-     *
-     * @throws CardException if the grid values are not valid cards
-     */
-    private function checkGridValues(array $grid): void
-    {
-        foreach ($grid as $column) {
+        foreach ($values as $column) {
             foreach ($column as $value) {
                 if (!$value instanceof Card) {
                     throw new CardException('Invalid card value.');
@@ -106,7 +69,9 @@ class CardGrid
      */
     private function checkX(int $x): void
     {
-        if ($x < 0 || $x >= $this->dimensions->getWidth()) {
+        $dimensions = $this->grid->getDimensions();
+
+        if (!$dimensions->isValidX($x)) {
             throw new CardException('X value out of bounds.');
         }
     }
@@ -118,7 +83,9 @@ class CardGrid
      */
     private function checkY(int $y): void
     {
-        if ($y < 0 || $y >= $this->dimensions->getHeight()) {
+        $dimensions = $this->grid->getDimensions();
+
+        if (!$dimensions->isValidY($y)) {
             throw new CardException('Y value out of bounds.');
         }
     }

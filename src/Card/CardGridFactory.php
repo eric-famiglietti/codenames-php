@@ -6,6 +6,7 @@ namespace Codenames\Card;
 
 use Codenames\Deck\Deck;
 use Codenames\Dimension\Dimensions;
+use Codenames\Grid\Grid;
 
 class CardGridFactory
 {
@@ -19,9 +20,21 @@ class CardGridFactory
      */
     public function makeCardGrid(Dimensions $dimensions, Deck $deck): CardGrid
     {
-        $grid = $this->makeGrid($dimensions, $deck);
+        $values = $this->makeValues($dimensions, $deck);
+        $grid = $this->makeGrid($dimensions, $values);
 
-        return new CardGrid($dimensions, $grid);
+        return new CardGrid($grid);
+    }
+
+    /**
+     * @param Dimensions $dimensions
+     * @param array      $values
+     *
+     * @return Grid
+     */
+    private function makeGrid(Dimensions $dimensions, array $values): Grid
+    {
+        return new Grid($dimensions, $values);
     }
 
     /**
@@ -30,16 +43,16 @@ class CardGridFactory
      *
      * @return array
      */
-    private function makeGrid(Dimensions $dimensions, Deck $deck): array
+    private function makeValues(Dimensions $dimensions, Deck $deck): array
     {
-        $grid = [];
+        $values = [];
 
         foreach (range(0, $dimensions->getWidth() - 1) as $x) {
             foreach (range(0, $dimensions->getHeight() - 1) as $y) {
-                $grid[$x][$y] = $deck->drawCard();
+                $values[$x][$y] = $deck->drawCard();
             }
         }
 
-        return $grid;
+        return $values;
     }
 }

@@ -22,10 +22,10 @@ final class PlayersTest extends TestCase
     {
         parent::setUp();
 
-        $factory = new PlayerFactory();
+        $playerFactory = new PlayerFactory();
 
-        $this->spymaster = $factory->makeSpymaster('Eric');
-        $this->operative = $factory->makeOperative('Myles');
+        $this->spymaster = $playerFactory->makeSpymaster('Eric');
+        $this->operative = $playerFactory->makeOperative('Myles');
     }
 
     public function testItThrowsAnExceptionIfThePlayerIsNotASpymaster(): void

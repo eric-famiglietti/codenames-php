@@ -11,37 +11,37 @@ use PHPUnit\Framework\TestCase;
 final class PlayerFactoryTest extends TestCase
 {
     /** @var PlayerFactory */
-    private $factory;
+    private $playerFactory;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->factory = new PlayerFactory();
+        $this->playerFactory = new PlayerFactory();
     }
 
     public function testItCreatesAPlayerFactory(): void
     {
-        $this->assertInstanceOf(PlayerFactory::class, $this->factory);
+        $this->assertInstanceOf(PlayerFactory::class, $this->playerFactory);
     }
 
     public function testItMakesAPlayer(): void
     {
-        $player = $this->factory->makeSpymaster('Eric');
+        $player = $this->playerFactory->makeSpymaster('Eric');
 
         $this->assertInstanceOf(Player::class, $player);
     }
 
     public function testItMakesASpymaster(): void
     {
-        $player = $this->factory->makeSpymaster('Eric');
+        $player = $this->playerFactory->makeSpymaster('Eric');
 
         $this->assertTrue($player->getRole()->isSpymaster());
     }
 
     public function testItMakesAnOperative(): void
     {
-        $player = $this->factory->makeOperative('Eric');
+        $player = $this->playerFactory->makeOperative('Eric');
 
         $this->assertTrue($player->getRole()->isOperative());
     }

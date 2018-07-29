@@ -17,9 +17,9 @@ final class CardGridFactoryTest extends TestCase
 
     public function testItCreatesACardGridFactory(): void
     {
-        $factory = new CardGridFactory();
+        $cardGridFactory = new CardGridFactory();
 
-        $this->assertInstanceOf(CardGridFactory::class, $factory);
+        $this->assertInstanceOf(CardGridFactory::class, $cardGridFactory);
     }
 
     public function testItMakesACardGrid(): void

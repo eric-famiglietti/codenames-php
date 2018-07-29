@@ -11,37 +11,37 @@ use PHPUnit\Framework\TestCase;
 final class TeamFactoryTest extends TestCase
 {
     /** @var TeamFactory */
-    private $factory;
+    private $teamFactory;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $this->factory = new TeamFactory();
+        $this->teamFactory = new TeamFactory();
     }
 
     public function testItCreatesATeamFactory(): void
     {
-        $this->assertInstanceOf(TeamFactory::class, $this->factory);
+        $this->assertInstanceOf(TeamFactory::class, $this->teamFactory);
     }
 
     public function testItMakesATeam(): void
     {
-        $team = $this->factory->makeRedTeam('Eric', 'Myles');
+        $team = $this->teamFactory->makeRedTeam('Eric', 'Myles');
 
         $this->assertInstanceOf(Team::class, $team);
     }
 
     public function testItMakesARedTeam(): void
     {
-        $team = $this->factory->makeRedTeam('Eric', 'Myles');
+        $team = $this->teamFactory->makeRedTeam('Eric', 'Myles');
 
         $this->assertTrue($team->getColor()->isRed());
     }
 
     public function testItMakesABlueTeam(): void
     {
-        $team = $this->factory->makeBlueTeam('Greg', 'Mike');
+        $team = $this->teamFactory->makeBlueTeam('Greg', 'Mike');
 
         $this->assertTrue($team->getColor()->isBlue());
     }

@@ -12,15 +12,15 @@ final class KeycardFactoryTest extends TestCase
 {
     public function testItCreatesAKeycardFactory(): void
     {
-        $factory = new KeycardFactory();
+        $keycardFactory = new KeycardFactory();
 
-        $this->assertInstanceOf(KeycardFactory::class, $factory);
+        $this->assertInstanceOf(KeycardFactory::class, $keycardFactory);
     }
 
     public function testItMakesAKeycard(): void
     {
-        $factory = new KeycardFactory();
+        $keycardFactory = new KeycardFactory();
 
-        $this->assertInstanceOf(Keycard::class, $factory->makeKeycard());
+        $this->assertInstanceOf(Keycard::class, $keycardFactory->makeKeycard());
     }
 }

@@ -51,6 +51,30 @@ class Dimensions
     }
 
     /**
+     * Determine if the given x value is within the dimensions.
+     *
+     * @param int $x
+     *
+     * @return bool
+     */
+    public function isValidX(int $x): bool
+    {
+        return $x >= 0 && $x < $this->width;
+    }
+
+    /**
+     * Determine if the given y value is within the dimensions.
+     *
+     * @param int $y
+     *
+     * @return bool
+     */
+    public function isValidY(int $y): bool
+    {
+        return $y >= 0 && $y < $this->height;
+    }
+
+    /**
      * @param int $width
      *
      * @throws DimensionException if the width is not a positive integer

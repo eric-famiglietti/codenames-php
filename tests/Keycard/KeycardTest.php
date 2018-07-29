@@ -7,6 +7,7 @@ namespace Tests\Codenames\Keycard;
 use Codenames\Color\Color;
 use Codenames\Color\ColorValues;
 use Codenames\Dimension\Dimensions;
+use Codenames\Grid\Grid;
 use Codenames\Keycard\Keycard;
 use Codenames\Keycard\KeycardGrid;
 use PHPUnit\Framework\TestCase;
@@ -26,10 +27,11 @@ final class KeycardTest extends TestCase
         $this->color = new Color(ColorValues::RED);
 
         $dimensions = new Dimensions(2, 2);
-        $gridArray = [[0, 0], [0, 0]];
-        $grid = new KeycardGrid($dimensions, $gridArray);
+        $values = [[0, 0], [0, 0]];
+        $grid = new Grid($dimensions, $values);
+        $keycardGrid = new KeycardGrid($grid);
 
-        $this->keycard = new Keycard($this->color, $grid);
+        $this->keycard = new Keycard($this->color, $keycardGrid);
     }
 
     public function testItCreatesAKeycard(): void

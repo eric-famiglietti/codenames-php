@@ -7,9 +7,8 @@ namespace Tests\Codenames\Card;
 use Codenames\Card\Card;
 use Codenames\Card\CardException;
 use Codenames\Card\CardGrid;
-use Codenames\Color\Color;
-use Codenames\Color\ColorValues;
 use Codenames\Dimension\Dimensions;
+use Codenames\Grid\Grid;
 use PHPUnit\Framework\TestCase;
 
 final class CardGridTest extends TestCase
@@ -20,46 +19,24 @@ final class CardGridTest extends TestCase
     /** @var int */
     const INVALID_Y = 2;
 
-    public function testItThrowsAnExceptionIfTheGridWidthIsInvalid(): void
-    {
-        $this->expectException(CardException::class);
-
-        $dimensions = new Dimensions(2, 2);
-        $card = new Card('Pizza');
-        $grid = [[$card], [$card]];
-
-        new CardGrid($dimensions, $grid);
-    }
-
-    public function testItThrowsAnExceptionIfTheGridHeightIsInvalid(): void
-    {
-        $this->expectException(CardException::class);
-
-        $dimensions = new Dimensions(2, 2);
-        $card = new Card('Pizza');
-        $grid = [[$card]];
-
-        new CardGrid($dimensions, $grid);
-    }
-
     public function testItThrowsAnExceptionIfTheGridValuesAreInvalid(): void
     {
         $this->expectException(CardException::class);
 
         $dimensions = new Dimensions(1, 1);
-        $color = new Color(ColorValues::RED);
-        $grid = [[$color]];
+        $values = [[0]];
+        $grid = new Grid($dimensions, $values);
 
-        new CardGrid($dimensions, $grid);
+        new CardGrid($grid);
     }
 
     public function testItCreatesACardGrid(): void
     {
-        $dimensions = new Dimensions(2, 2);
-        $card = new Card('Pizza');
-        $grid = [[$card, $card], [$card, $card]];
+        $dimensions = new Dimensions(1, 1);
+        $values = [[new Card('Pizza')]];
+        $grid = new Grid($dimensions, $values);
 
-        $cardGrid = new CardGrid($dimensions, $grid);
+        $cardGrid = new CardGrid($grid);
 
         $this->assertInstanceOf(CardGrid::class, $cardGrid);
     }
@@ -68,10 +45,10 @@ final class CardGridTest extends TestCase
     {
         $this->expectException(CardException::class);
 
-        $dimensions = new Dimensions(2, 2);
-        $card = new Card('Pizza');
-        $grid = [[$card, $card], [$card, $card]];
-        $cardGrid = new CardGrid($dimensions, $grid);
+        $dimensions = new Dimensions(1, 1);
+        $values = [[new Card('Pizza')]];
+        $grid = new Grid($dimensions, $values);
+        $cardGrid = new CardGrid($grid);
 
         $cardGrid->getValue(self::INVALID_X, 1);
     }
@@ -80,10 +57,10 @@ final class CardGridTest extends TestCase
     {
         $this->expectException(CardException::class);
 
-        $dimensions = new Dimensions(2, 2);
-        $card = new Card('Pizza');
-        $grid = [[$card, $card], [$card, $card]];
-        $cardGrid = new CardGrid($dimensions, $grid);
+        $dimensions = new Dimensions(1, 1);
+        $values = [[new Card('Pizza')]];
+        $grid = new Grid($dimensions, $values);
+        $cardGrid = new CardGrid($grid);
 
         $cardGrid->getValue(1, self::INVALID_Y);
     }
@@ -92,8 +69,9 @@ final class CardGridTest extends TestCase
     {
         $dimensions = new Dimensions(1, 1);
         $card = new Card('Pizza');
-        $grid = [[$card]];
-        $cardGrid = new CardGrid($dimensions, $grid);
+        $values = [[$card]];
+        $grid = new Grid($dimensions, $values);
+        $cardGrid = new CardGrid($grid);
 
         $this->assertEquals($card, $cardGrid->getValue(0, 0));
     }

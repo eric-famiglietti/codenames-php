@@ -7,40 +7,40 @@ namespace Codenames\Card;
 class Card
 {
     /** @var string */
-    private $codename;
+    private $word;
 
     /**
      * Create a new card instance.
      *
-     * @param string $codename
+     * @param string $word
      *
-     * @throws CardException if the codename is an empty string
+     * @throws CardException if the word is an empty string
      */
-    public function __construct(string $codename)
+    public function __construct(string $word)
     {
-        $this->checkCodename($codename);
+        $this->checkWord($word);
 
-        $this->codename = $codename;
+        $this->word = $word;
     }
 
     /**
-     * Get the codename of the card.
+     * Get the word of the card.
      *
      * @return string
      */
-    public function getCodename(): string
+    public function getWord(): string
     {
-        return $this->codename;
+        return $this->word;
     }
 
     /**
-     * @param string $codename
+     * @param string $word
      *
-     * @throws CardException if the codename is an empty string
+     * @throws CardException if the word is an empty string
      */
-    private function checkCodename(string $codename): void
+    private function checkWord(string $word): void
     {
-        if (empty($codename)) {
+        if (empty($word)) {
             throw new CardException('Codename must not be an empty string.');
         }
     }

@@ -32,10 +32,10 @@ final class TeamTest extends TestCase
 
         $this->color = new Color(ColorValues::RED);
 
-        $factory = new PlayerFactory();
+        $playerFactory = new PlayerFactory();
 
-        $this->spymaster = $factory->makeSpymaster('Eric');
-        $this->operative = $factory->makeOperative('Myles');
+        $this->spymaster = $playerFactory->makeSpymaster('Eric');
+        $this->operative = $playerFactory->makeOperative('Myles');
 
         $players = new Players($this->spymaster, $this->operative);
 

@@ -32,7 +32,7 @@ class DeckFactory
         $cards = [];
 
         foreach ($words as $word) {
-            $cards[] = $this->makeWord($word);
+            $cards[] = $this->makeCard($word);
         }
 
         return $cards;
@@ -43,7 +43,7 @@ class DeckFactory
      *
      * @return Card
      */
-    private function makeWord(string $word): Card
+    private function makeCard(string $word): Card
     {
         return new Card($word);
     }

@@ -10,7 +10,7 @@ use PHPUnit\Framework\TestCase;
 
 final class CardTest extends TestCase
 {
-    public function testItThrowsAnExceptionIfCodenameIsEmpty(): void
+    public function testItThrowsAnExceptionIfWordIsEmpty(): void
     {
         $this->expectException(CardException::class);
 
@@ -24,10 +24,10 @@ final class CardTest extends TestCase
         $this->assertInstanceOf(Card::class, $card);
     }
 
-    public function testItReturnsTheCodename(): void
+    public function testItReturnsTheWord(): void
     {
         $card = new Card('Orangutan');
 
-        $this->assertEquals('Orangutan', $card->getCodename());
+        $this->assertEquals('Orangutan', $card->getWord());
     }
 }

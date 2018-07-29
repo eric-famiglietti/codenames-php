@@ -22,10 +22,10 @@ final class TeamsTest extends TestCase
     {
         parent::setUp();
 
-        $factory = new TeamFactory();
+        $teamFactory = new TeamFactory();
 
-        $this->redTeam = $factory->makeRedTeam('Eric', 'Myles');
-        $this->blueTeam = $factory->makeBlueTeam('Greg', 'Mike');
+        $this->redTeam = $teamFactory->makeRedTeam('Eric', 'Myles');
+        $this->blueTeam = $teamFactory->makeBlueTeam('Greg', 'Mike');
     }
 
     public function testItThrowsAnExceptionIfTheRedTeamIsNotRed(): void

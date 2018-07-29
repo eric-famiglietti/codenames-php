@@ -12,17 +12,17 @@ final class DeckFactoryTest extends TestCase
 {
     public function testItCreatesADeckFactory(): void
     {
-        $factory = new DeckFactory();
+        $deckFactory = new DeckFactory();
 
-        $this->assertInstanceOf(DeckFactory::class, $factory);
+        $this->assertInstanceOf(DeckFactory::class, $deckFactory);
     }
 
     public function testItMakesADeck(): void
     {
-        $factory = new DeckFactory();
+        $deckFactory = new DeckFactory();
 
         $words = ['Banana', 'Pear', 'Apple'];
-        $deck = $factory->makeDeck($words);
+        $deck = $deckFactory->makeDeck($words);
 
         $this->assertInstanceOf(Deck::class, $deck);
     }

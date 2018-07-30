@@ -60,7 +60,7 @@ class KeycardFactory
     private function makeKeycardGrid(Dimensions $dimensions, Color $color): KeycardGrid
     {
         $values = $this->makeValues($dimensions);
-        $values = $this->populateValues($dimensions, $values, $color);
+        $values = $this->populateValues($values, $color);
 
         $grid = $this->makeGrid($dimensions, $values);
 
@@ -86,20 +86,19 @@ class KeycardFactory
     }
 
     /**
-     * @param Dimensions $dimensions
-     * @param array      $values
-     * @param Color      $color
+     * @param array $values
+     * @param Color $color
      *
      * @return array
      */
-    private function populateValues(Dimensions $dimensions, array $values, Color $color): array
+    private function populateValues(array $values, Color $color): array
     {
         $redsCount = $this->calculateRedsCount($color);
         $bluesCount = $this->calculateBluesCount($color);
 
-        $values = $this->placeValuesRandomly($dimensions, $values, KeycardValues::RED, $redsCount);
-        $values = $this->placeValuesRandomly($dimensions, $values, KeycardValues::BLUE, $bluesCount);
-        $values = $this->placeValuesRandomly($dimensions, $values, KeycardValues::ASSASSIN, self::ASSASSINS_COUNT);
+        $values = $this->placeValuesRandomly($values, KeycardValues::RED, $redsCount);
+        $values = $this->placeValuesRandomly($values, KeycardValues::BLUE, $bluesCount);
+        $values = $this->placeValuesRandomly($values, KeycardValues::ASSASSIN, self::ASSASSINS_COUNT);
 
         return $values;
     }
@@ -133,34 +132,32 @@ class KeycardFactory
     }
 
     /**
-     * @param Dimensions $dimensions
-     * @param array      $values
-     * @param int        $value
-     * @param int        $count
+     * @param array $values
+     * @param int   $value
+     * @param int   $count
      *
      * @return array
      */
-    private function placeValuesRandomly(Dimensions $dimensions, array $values, int $value, int $count): array
+    private function placeValuesRandomly(array $values, int $value, int $count): array
     {
         foreach (range(0, $count - 1) as $i) {
-            $values = $this->placeValueRandomly($dimensions, $values, $value);
+            $values = $this->placeValueRandomly($values, $value);
         }
 
         return $values;
     }
 
     /**
-     * @param Dimensions $dimensions
-     * @param array      $values
-     * @param int        $value
+     * @param array $values
+     * @param int   $value
      *
      * @return array
      */
-    private function placeValueRandomly(Dimensions $dimensions, array $values, int $value): array
+    private function placeValueRandomly(array $values, int $value): array
     {
         while (true) {
-            $x = rand(0, $dimensions->getWidth() - 1);
-            $y = rand(0, $dimensions->getHeight() - 1);
+            $x = array_rand($values);
+            $y = array_rand($values[$x]);
 
             if (self::DEFAULT_VALUE === $values[$x][$y]) {
                 $values[$x][$y] = $value;

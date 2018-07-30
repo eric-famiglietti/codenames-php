@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Tests\Codenames\Game;
 
+use Codenames\Dimension\Dimensions;
 use Codenames\Game\Game;
 use Codenames\Keycard\Keycard;
 use Codenames\Keycard\KeycardFactory;
@@ -38,8 +39,9 @@ final class GameTest extends TestCase
         $teams = new Teams($this->redTeam, $this->blueTeam);
 
         $keycardFactory = new KeycardFactory();
+        $dimensions = new Dimensions(5, 5);
 
-        $this->keycard = $keycardFactory->makeKeycard();
+        $this->keycard = $keycardFactory->makeKeycard($dimensions);
 
         $this->game = new Game($teams, $this->keycard);
     }

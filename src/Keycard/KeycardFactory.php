@@ -15,12 +15,6 @@ class KeycardFactory
     const COLOR_VALUES = [ColorValues::RED, ColorValues::BLUE];
 
     /** @var int */
-    const DEFAULT_WIDTH = 5;
-
-    /** @var int */
-    const DEFAULT_HEIGHT = 5;
-
-    /** @var int */
     const DEFAULT_VALUE = KeycardValues::BYSTANDER;
 
     /** @var int */
@@ -35,12 +29,14 @@ class KeycardFactory
     /**
      * Create a new keycard instance.
      *
+     * @param Dimensions $dimensions
+     *
      * @return Keycard
      */
-    public function makeKeycard(): Keycard
+    public function makeKeycard(Dimensions $dimensions): Keycard
     {
         $color = $this->makeColor();
-        $grid = $this->makeKeycardGrid($color);
+        $grid = $this->makeKeycardGrid($dimensions, $color);
 
         return new Keycard($color, $grid);
     }
@@ -56,15 +52,14 @@ class KeycardFactory
     }
 
     /**
-     * @param Color $color
+     * @param Dimensions $dimensions
+     * @param Color      $color
      *
      * @return KeycardGrid
      */
-    private function makeKeycardGrid(Color $color): KeycardGrid
+    private function makeKeycardGrid(Dimensions $dimensions, Color $color): KeycardGrid
     {
-        $dimensions = $this->makeDimensions();
-
-        $values = $this->makeValues();
+        $values = $this->makeValues($dimensions);
         $values = $this->populateValues($values, $color);
 
         $grid = $this->makeGrid($dimensions, $values);
@@ -73,22 +68,16 @@ class KeycardFactory
     }
 
     /**
-     * @return Dimensions
-     */
-    private function makeDimensions(): Dimensions
-    {
-        return new Dimensions(self::DEFAULT_WIDTH, self::DEFAULT_HEIGHT);
-    }
-
-    /**
+     * @param Dimensions $dimensions
+     *
      * @return array
      */
-    private function makeValues(): array
+    private function makeValues(Dimensions $dimensions): array
     {
         $values = [];
 
-        foreach (range(0, self::DEFAULT_WIDTH - 1) as $x) {
-            foreach (range(0, self::DEFAULT_HEIGHT - 1) as $y) {
+        foreach (range(0, $dimensions->getWidth() - 1) as $x) {
+            foreach (range(0, $dimensions->getHeight() - 1) as $y) {
                 $values[$x][$y] = self::DEFAULT_VALUE;
             }
         }
@@ -167,8 +156,8 @@ class KeycardFactory
     private function placeValueRandomly(array $values, int $value): array
     {
         while (true) {
-            $x = rand(0, self::DEFAULT_WIDTH - 1);
-            $y = rand(0, self::DEFAULT_HEIGHT - 1);
+            $x = array_rand($values);
+            $y = array_rand($values[$x]);
 
             if (self::DEFAULT_VALUE === $values[$x][$y]) {
                 $values[$x][$y] = $value;

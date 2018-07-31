@@ -32,15 +32,12 @@ final class GameTest extends TestCase
         parent::setUp();
 
         $teamFactory = new TeamFactory();
-
         $this->redTeam = $teamFactory->makeRedTeam('Eric', 'Myles');
         $this->blueTeam = $teamFactory->makeBlueTeam('Greg', 'Mike');
-
         $teams = new Teams($this->redTeam, $this->blueTeam);
 
         $keycardFactory = new KeycardFactory();
         $dimensions = new Dimensions(5, 5);
-
         $this->keycard = $keycardFactory->makeKeycard($dimensions);
 
         $this->game = new Game($teams, $this->keycard);

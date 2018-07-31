@@ -36,9 +36,9 @@ class KeycardFactory
     public function makeKeycard(Dimensions $dimensions): Keycard
     {
         $color = $this->makeColor();
-        $grid = $this->makeKeycardGrid($dimensions, $color);
+        $keycardGrid = $this->makeKeycardGrid($dimensions, $color);
 
-        return new Keycard($color, $grid);
+        return new Keycard($color, $keycardGrid);
     }
 
     /**

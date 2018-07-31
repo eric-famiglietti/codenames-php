@@ -12,18 +12,18 @@ class Keycard
     private $color;
 
     /** @var KeycardGrid */
-    private $grid;
+    private $keycardGrid;
 
     /**
      * Create a new keycard instance.
      *
      * @param Color       $color
-     * @param KeycardGrid $grid
+     * @param KeycardGrid $keycardGrid
      */
-    public function __construct(Color $color, KeycardGrid $grid)
+    public function __construct(Color $color, KeycardGrid $keycardGrid)
     {
         $this->color = $color;
-        $this->grid = $grid;
+        $this->keycardGrid = $keycardGrid;
     }
 
     /**
@@ -46,6 +46,6 @@ class Keycard
      */
     public function getValue(int $x, int $y): int
     {
-        return $this->grid->getValue($x, $y);
+        return $this->keycardGrid->getValue($x, $y);
     }
 }

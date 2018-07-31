@@ -6,60 +6,71 @@ namespace Tests\Codenames\Game;
 
 use Codenames\Dimension\Dimensions;
 use Codenames\Game\Game;
-use Codenames\Keycard\Keycard;
+use Codenames\Game\GameException;
 use Codenames\Keycard\KeycardFactory;
-use Codenames\Team\Team;
-use Codenames\Team\TeamFactory;
-use Codenames\Team\Teams;
 use PHPUnit\Framework\TestCase;
 
 final class GameTest extends TestCase
 {
-    /** @var Team */
-    private $redTeam;
-
-    /** @var Team */
-    private $blueTeam;
-
-    /** @var Keycard */
-    private $keycard;
-
-    /** @var Game */
-    private $game;
+    /** @var GameFixture */
+    private $gameFixture;
 
     public function setUp(): void
     {
         parent::setUp();
 
-        $teamFactory = new TeamFactory();
-        $this->redTeam = $teamFactory->makeRedTeam('Eric', 'Myles');
-        $this->blueTeam = $teamFactory->makeBlueTeam('Greg', 'Mike');
-        $teams = new Teams($this->redTeam, $this->blueTeam);
+        $this->gameFixture = new GameFixture();
+    }
 
+    public function testItThrowsAnExceptionIfTheDimensionsDontMatch(): void
+    {
+        $this->expectException(GameException::class);
+
+        $teams = $this->gameFixture->getTeams();
+        $dimensions = new Dimensions(6, 6);
         $keycardFactory = new KeycardFactory();
-        $dimensions = new Dimensions(5, 5);
-        $this->keycard = $keycardFactory->makeKeycard($dimensions);
+        $keycard = $keycardFactory->makeKeycard($dimensions);
+        $cardGrid = $this->gameFixture->getCardGrid();
 
-        $this->game = new Game($teams, $this->keycard);
+        new Game($teams, $keycard, $cardGrid);
     }
 
     public function testItCreatesAGame(): void
     {
-        $this->assertInstanceOf(Game::class, $this->game);
+        $game = $this->gameFixture->getGame();
+
+        $this->assertInstanceOf(Game::class, $game);
     }
 
     public function testItGetsTheRedTeam(): void
     {
-        $this->assertEquals($this->redTeam, $this->game->getRedTeam());
+        $expected = $this->gameFixture->getRedTeam();
+        $actual = $this->gameFixture->getGame()->getRedTeam();
+
+        $this->assertEquals($expected, $actual);
     }
 
     public function testItGetsTheBlueTeam(): void
     {
-        $this->assertEquals($this->blueTeam, $this->game->getBlueTeam());
+        $expected = $this->gameFixture->getBlueTeam();
+        $actual = $this->gameFixture->getGame()->getBlueTeam();
+
+        $this->assertEquals($expected, $actual);
     }
 
     public function testItGetsTheKeycard(): void
     {
-        $this->assertEquals($this->keycard, $this->game->getKeycard());
+        $expected = $this->gameFixture->getKeycard();
+        $actual = $this->gameFixture->getGame()->getKeycard();
+
+        $this->assertEquals($expected, $actual);
+    }
+
+    public function testItGetsTheCardGrid(): void
+    {
+        $expected = $this->gameFixture->getCardGrid();
+        $actual = $this->gameFixture->getGame()->getCardGrid();
+
+        $this->assertEquals($expected, $actual);
     }
 }

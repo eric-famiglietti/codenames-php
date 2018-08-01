@@ -17,6 +17,9 @@ class KeycardFactory
     /** @var int */
     const DEFAULT_GRID_VALUE = KeycardValues::BYSTANDER;
 
+    /** @var int */
+    const STARTING_COLOR_MODIFIER = 1;
+
     /**
      * Create a new keycard instance.
      *
@@ -107,7 +110,7 @@ class KeycardFactory
     {
         $redsCount = $keycardValueCounts->getRedsCount();
 
-        return $color->isRed() ? $redsCount : $redsCount + 1;
+        return $color->isRed() ? $redsCount : $redsCount + self::STARTING_COLOR_MODIFIER;
     }
 
     /**
@@ -120,7 +123,7 @@ class KeycardFactory
     {
         $bluesCount = $keycardValueCounts->getBluesCount();
 
-        return $color->isBlue() ? $bluesCount : $bluesCount + 1;
+        return $color->isBlue() ? $bluesCount : $bluesCount + self::STARTING_COLOR_MODIFIER;
     }
 
     /**

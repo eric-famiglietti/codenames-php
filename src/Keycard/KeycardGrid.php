@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Codenames\Keycard;
 
+use Codenames\Dimension\Dimensions;
 use Codenames\Grid\Grid;
 
 class KeycardGrid
@@ -23,6 +24,16 @@ class KeycardGrid
         $this->checkValues($grid->getValues());
 
         $this->grid = $grid;
+    }
+
+    /**
+     * Get the keycard grid's dimensions.
+     *
+     * @return Dimensions
+     */
+    public function getDimensions(): Dimensions
+    {
+        return $this->grid->getDimensions();
     }
 
     /**

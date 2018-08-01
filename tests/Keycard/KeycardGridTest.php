@@ -43,6 +43,16 @@ final class KeycardGridTest extends TestCase
         $this->assertInstanceOf(KeycardGrid::class, $keycardGrid);
     }
 
+    public function testItGetsTheKeycardGridsDimensions(): void
+    {
+        $dimensions = new Dimensions(2, 2);
+        $values = [[0, 0], [0, 0]];
+        $grid = new Grid($dimensions, $values);
+        $keycardGrid = new KeycardGrid($grid);
+
+        $this->assertEquals($dimensions, $keycardGrid->getDimensions());
+    }
+
     public function testItThrowsAnExceptionIfTheXValueIsOutOfBounds(): void
     {
         $this->expectException(KeycardException::class);

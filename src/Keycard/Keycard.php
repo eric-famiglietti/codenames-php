@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Codenames\Keycard;
 
 use Codenames\Color\Color;
+use Codenames\Dimension\Dimensions;
 
 class Keycard
 {
@@ -34,6 +35,16 @@ class Keycard
     public function getColor(): Color
     {
         return $this->color;
+    }
+
+    /**
+     * Get the keycard's dimensions.
+     *
+     * @return Dimensions
+     */
+    public function getDimensions(): Dimensions
+    {
+        return $this->keycardGrid->getDimensions();
     }
 
     /**

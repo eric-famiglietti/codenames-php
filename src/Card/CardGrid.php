@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Codenames\Card;
 
+use Codenames\Dimension\Dimensions;
 use Codenames\Grid\Grid;
 
 class CardGrid
@@ -23,6 +24,16 @@ class CardGrid
         $this->checkValues($grid->getValues());
 
         $this->grid = $grid;
+    }
+
+    /**
+     * Get the card grid's dimensions.
+     *
+     * @return Dimensions
+     */
+    public function getDimensions(): Dimensions
+    {
+        return $this->grid->getDimensions();
     }
 
     /**

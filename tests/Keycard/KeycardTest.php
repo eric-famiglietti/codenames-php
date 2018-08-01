@@ -17,6 +17,9 @@ final class KeycardTest extends TestCase
     /** @var Color */
     private $color;
 
+    /** @var Dimensions */
+    private $dimensions;
+
     /** @var Keycard */
     private $keycard;
 
@@ -25,10 +28,10 @@ final class KeycardTest extends TestCase
         parent::setUp();
 
         $this->color = new Color(ColorValues::RED);
+        $this->dimensions = new Dimensions(2, 2);
 
-        $dimensions = new Dimensions(2, 2);
         $values = [[0, 0], [0, 0]];
-        $grid = new Grid($dimensions, $values);
+        $grid = new Grid($this->dimensions, $values);
         $keycardGrid = new KeycardGrid($grid);
 
         $this->keycard = new Keycard($this->color, $keycardGrid);
@@ -42,6 +45,11 @@ final class KeycardTest extends TestCase
     public function testItGetsTheColor(): void
     {
         $this->assertEquals($this->color, $this->keycard->getColor());
+    }
+
+    public function testItGetsTheKeycardsDimensions(): void
+    {
+        $this->assertEquals($this->dimensions, $this->keycard->getDimensions());
     }
 
     public function testItGetsAValue(): void

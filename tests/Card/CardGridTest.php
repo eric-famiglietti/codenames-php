@@ -41,6 +41,16 @@ final class CardGridTest extends TestCase
         $this->assertInstanceOf(CardGrid::class, $cardGrid);
     }
 
+    public function testItGetsTheCardGridsDimensions(): void
+    {
+        $dimensions = new Dimensions(1, 1);
+        $values = [[new Card('Pizza')]];
+        $grid = new Grid($dimensions, $values);
+        $cardGrid = new CardGrid($grid);
+
+        $this->assertEquals($dimensions, $cardGrid->getDimensions());
+    }
+
     public function testItThrowsAnExceptionIfTheXValueIsOutOfBounds(): void
     {
         $this->expectException(CardException::class);

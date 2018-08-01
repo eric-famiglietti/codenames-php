@@ -75,6 +75,19 @@ class Dimensions
     }
 
     /**
+     * Determine if the given dimensions object is equal.
+     *
+     * @param Dimensions $dimensions
+     *
+     * @return bool
+     */
+    public function equals(Dimensions $dimensions): bool
+    {
+        return $this->width === $dimensions->getWidth() &&
+            $this->height === $dimensions->getHeight();
+    }
+
+    /**
      * @param int $width
      *
      * @throws DimensionException if the width is not a positive integer

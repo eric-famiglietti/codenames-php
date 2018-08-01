@@ -78,4 +78,20 @@ final class DimensionsTest extends TestCase
 
         $this->assertTrue($dimensions->isValidY(4));
     }
+
+    public function testItReturnsFalseIfTheDimensionsArentEqual(): void
+    {
+        $dimensionsOne = new Dimensions(5, 5);
+        $dimensionsTwo = new Dimensions(4, 4);
+
+        $this->assertFalse($dimensionsOne->equals($dimensionsTwo));
+    }
+
+    public function testItReturnsTrueIfTheDimensionsAreEqual(): void
+    {
+        $dimensionsOne = new Dimensions(5, 5);
+        $dimensionsTwo = new Dimensions(5, 5);
+
+        $this->assertTrue($dimensionsOne->equals($dimensionsTwo));
+    }
 }

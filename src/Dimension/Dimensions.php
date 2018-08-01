@@ -51,6 +51,16 @@ class Dimensions
     }
 
     /**
+     * Get the area of the dimensions.
+     *
+     * @return int
+     */
+    public function getArea(): int
+    {
+        return $this->width * $this->height;
+    }
+
+    /**
      * Determine if the given x value is within the dimensions.
      *
      * @param int $x

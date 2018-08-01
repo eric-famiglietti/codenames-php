@@ -105,11 +105,9 @@ class KeycardFactory
      */
     private function calculateRedsCount(Color $color, KeycardValueCounts $keycardValueCounts): int
     {
-        if ($color->isRed()) {
-            return $keycardValueCounts->getRedsCount() + 1;
-        }
+        $redsCount = $keycardValueCounts->getRedsCount();
 
-        return $keycardValueCounts->getRedsCount();
+        return $color->isRed() ? $redsCount : $redsCount + 1;
     }
 
     /**
@@ -120,11 +118,9 @@ class KeycardFactory
      */
     private function calculateBluesCount(Color $color, KeycardValueCounts $keycardValueCounts): int
     {
-        if ($color->isBlue()) {
-            return $keycardValueCounts->getBluesCount() + 1;
-        }
+        $bluesCount = $keycardValueCounts->getBluesCount();
 
-        return $keycardValueCounts->getBluesCount();
+        return $color->isBlue() ? $bluesCount : $bluesCount + 1;
     }
 
     /**

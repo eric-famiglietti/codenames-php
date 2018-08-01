@@ -7,6 +7,7 @@ namespace Tests\Codenames\Keycard;
 use Codenames\Dimension\Dimensions;
 use Codenames\Keycard\Keycard;
 use Codenames\Keycard\KeycardFactory;
+use Codenames\Keycard\KeycardValueCounts;
 use PHPUnit\Framework\TestCase;
 
 final class KeycardFactoryTest extends TestCase
@@ -22,8 +23,9 @@ final class KeycardFactoryTest extends TestCase
     {
         $keycardFactory = new KeycardFactory();
         $dimensions = new Dimensions(5, 5);
+        $keycardValueCounts = new KeycardValueCounts(8, 8, 1);
 
-        $keycard = $keycardFactory->makeKeycard($dimensions);
+        $keycard = $keycardFactory->makeKeycard($dimensions, $keycardValueCounts);
 
         $this->assertInstanceOf(Keycard::class, $keycard);
     }

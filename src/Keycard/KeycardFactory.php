@@ -17,26 +17,18 @@ class KeycardFactory
     /** @var int */
     const DEFAULT_GRID_VALUE = KeycardValues::BYSTANDER;
 
-    /** @var int */
-    const REDS_COUNT = 8;
-
-    /** @var int */
-    const BLUES_COUNT = 8;
-
-    /** @var int */
-    const ASSASSINS_COUNT = 1;
-
     /**
      * Create a new keycard instance.
      *
-     * @param Dimensions $dimensions
+     * @param Dimensions         $dimensions
+     * @param KeycardValueCounts $keycardValueCounts
      *
      * @return Keycard
      */
-    public function makeKeycard(Dimensions $dimensions): Keycard
+    public function makeKeycard(Dimensions $dimensions, KeycardValueCounts $keycardValueCounts): Keycard
     {
         $color = $this->makeRandomColor();
-        $keycardGrid = $this->makeKeycardGrid($dimensions, $color);
+        $keycardGrid = $this->makeKeycardGrid($dimensions, $keycardValueCounts, $color);
 
         return new Keycard($color, $keycardGrid);
     }
@@ -52,15 +44,16 @@ class KeycardFactory
     }
 
     /**
-     * @param Dimensions $dimensions
-     * @param Color      $color
+     * @param Dimensions         $dimensions
+     * @param KeycardValueCounts $keycardValueCounts
+     * @param Color              $color
      *
      * @return KeycardGrid
      */
-    private function makeKeycardGrid(Dimensions $dimensions, Color $color): KeycardGrid
+    private function makeKeycardGrid(Dimensions $dimensions, KeycardValueCounts $keycardValueCounts, Color $color): KeycardGrid
     {
         $values = $this->makeValues($dimensions);
-        $values = $this->populateValues($values, $color);
+        $values = $this->populateValues($values, $keycardValueCounts, $color);
 
         $grid = $this->makeGrid($dimensions, $values);
 
@@ -86,49 +79,52 @@ class KeycardFactory
     }
 
     /**
-     * @param array $values
-     * @param Color $color
+     * @param array              $values
+     * @param KeycardValueCounts $keycardValueCounts
+     * @param Color              $color
      *
      * @return array
      */
-    private function populateValues(array $values, Color $color): array
+    private function populateValues(array $values, KeycardValueCounts $keycardValueCounts, Color $color): array
     {
-        $redsCount = $this->calculateRedsCount($color);
-        $bluesCount = $this->calculateBluesCount($color);
+        $redsCount = $this->calculateRedsCount($color, $keycardValueCounts);
+        $bluesCount = $this->calculateBluesCount($color, $keycardValueCounts);
 
         $values = $this->placeValuesRandomly($values, KeycardValues::RED, $redsCount);
         $values = $this->placeValuesRandomly($values, KeycardValues::BLUE, $bluesCount);
-        $values = $this->placeValuesRandomly($values, KeycardValues::ASSASSIN, self::ASSASSINS_COUNT);
+        $values = $this->placeValuesRandomly($values, KeycardValues::ASSASSIN, $keycardValueCounts->getAssassinsCount());
 
         return $values;
     }
 
     /**
-     * @param Color $color
+     * @param Color              $color
+     * @param KeycardValueCounts $keycardValueCounts
      *
      * @return int
      */
-    private function calculateRedsCount(Color $color): int
+    private function calculateRedsCount(Color $color, KeycardValueCounts $keycardValueCounts): int
     {
         if ($color->isRed()) {
-            return self::REDS_COUNT + 1;
+            return $keycardValueCounts->getRedsCount() + 1;
         }
 
-        return self::REDS_COUNT;
+        return $keycardValueCounts->getRedsCount();
     }
 
     /**
-     * @param Color $color
+     * @param Color              $color
+     * @param KeycardValueCounts $keycardValueCounts
      *
      * @return int
      */
-    private function calculateBluesCount(Color $color): int
+    private function calculateBluesCount(Color $color, KeycardValueCounts $keycardValueCounts): int
     {
         if ($color->isBlue()) {
-            return self::BLUES_COUNT + 1;
+            return $keycardValueCounts->getBluesCount() + 1;
         }
 
-        return self::BLUES_COUNT;
+        return $keycardValueCounts->getBluesCount();
     }
 
     /**

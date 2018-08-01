@@ -12,6 +12,7 @@ use Codenames\Game\Game;
 use Codenames\Game\GameException;
 use Codenames\Keycard\Keycard;
 use Codenames\Keycard\KeycardFactory;
+use Codenames\Keycard\KeycardValueCounts;
 use Codenames\Team\Team;
 use Codenames\Team\TeamFactory;
 use Codenames\Team\Teams;
@@ -56,6 +57,9 @@ final class GameTest extends TestCase
     /** @var Teams */
     private $teams;
 
+    /** @var KeycardValueCounts */
+    private $keycardValueCounts;
+
     /** @var Keycard */
     private $keycard;
 
@@ -77,8 +81,10 @@ final class GameTest extends TestCase
 
         $dimensions = new Dimensions(5, 5);
 
+        $this->keycardValueCounts = new KeycardValueCounts(8, 8, 1);
+
         $keycardFactory = new KeycardFactory();
-        $this->keycard = $keycardFactory->makeKeycard($dimensions);
+        $this->keycard = $keycardFactory->makeKeycard($dimensions, $this->keycardValueCounts);
 
         $deckFactory = new DeckFactory();
         $deck = $deckFactory->makeDeck(self::WORDS);
@@ -96,7 +102,7 @@ final class GameTest extends TestCase
         $teams = $this->teams;
         $dimensions = new Dimensions(6, 6);
         $keycardFactory = new KeycardFactory();
-        $keycard = $keycardFactory->makeKeycard($dimensions);
+        $keycard = $keycardFactory->makeKeycard($dimensions, $this->keycardValueCounts);
         $cardGrid = $this->cardGrid;
 
         new Game($teams, $keycard, $cardGrid);

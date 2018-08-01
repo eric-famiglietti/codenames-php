@@ -35,7 +35,7 @@ class KeycardFactory
      */
     public function makeKeycard(Dimensions $dimensions): Keycard
     {
-        $color = $this->makeColor();
+        $color = $this->makeRandomColor();
         $keycardGrid = $this->makeKeycardGrid($dimensions, $color);
 
         return new Keycard($color, $keycardGrid);
@@ -44,7 +44,7 @@ class KeycardFactory
     /**
      * @return Color
      */
-    private function makeColor(): Color
+    private function makeRandomColor(): Color
     {
         $value = self::COLOR_VALUES[array_rand(self::COLOR_VALUES)];
 

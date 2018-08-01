@@ -15,7 +15,7 @@ class KeycardFactory
     const COLOR_VALUES = [ColorValues::RED, ColorValues::BLUE];
 
     /** @var int */
-    const DEFAULT_VALUE = KeycardValues::BYSTANDER;
+    const DEFAULT_GRID_VALUE = KeycardValues::BYSTANDER;
 
     /** @var int */
     const REDS_COUNT = 8;
@@ -78,7 +78,7 @@ class KeycardFactory
 
         foreach (range(0, $dimensions->getWidth() - 1) as $x) {
             foreach (range(0, $dimensions->getHeight() - 1) as $y) {
-                $values[$x][$y] = self::DEFAULT_VALUE;
+                $values[$x][$y] = self::DEFAULT_GRID_VALUE;
             }
         }
 
@@ -159,7 +159,7 @@ class KeycardFactory
             $x = array_rand($values);
             $y = array_rand($values[$x]);
 
-            if (self::DEFAULT_VALUE === $values[$x][$y]) {
+            if (self::DEFAULT_GRID_VALUE === $values[$x][$y]) {
                 $values[$x][$y] = $value;
 
                 return $values;

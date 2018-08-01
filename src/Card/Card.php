@@ -18,6 +18,8 @@ class Card
      */
     public function __construct(string $word)
     {
+        $word = trim($word);
+
         $this->checkWord($word);
 
         $this->word = $word;

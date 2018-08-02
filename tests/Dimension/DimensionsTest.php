@@ -51,6 +51,13 @@ final class DimensionsTest extends TestCase
         $this->assertEquals(5, $dimensions->getHeight());
     }
 
+    public function testItGetsTheArea(): void
+    {
+        $dimensions = new Dimensions(5, 5);
+
+        $this->assertEquals(25, $dimensions->getArea());
+    }
+
     public function testItReturnsFalseIfTheXIsOutOfBounds(): void
     {
         $dimensions = new Dimensions(5, 5);

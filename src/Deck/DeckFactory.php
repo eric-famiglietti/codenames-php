@@ -29,27 +29,21 @@ class DeckFactory implements DeckFactoryInterface
      */
     public function makeDeck(): Deck
     {
-        $words = $this->dictionary->getWords();
-
-        $cards = $this->makeCards($words);
+        $cards = $this->makeCards();
 
         return new Deck($cards);
     }
 
     /**
-     * @param array $words
-     *
      * @return array
      */
-    private function makeCards(array $words): array
+    private function makeCards(): array
     {
-        $cards = [];
+        $words = $this->dictionary->getWords();
 
-        foreach ($words as $word) {
-            $cards[] = $this->makeCard($word);
-        }
-
-        return $cards;
+        return array_map(function (string $word) {
+            return $this->makeCard($word);
+        }, $words);
     }
 
     /**

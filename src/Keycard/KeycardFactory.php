@@ -27,13 +27,33 @@ class KeycardFactory
      * @param KeycardValueCounts $keycardValueCounts
      *
      * @return Keycard
+     *
+     * @throws KeycardException if the number of values exceeds the size of the grid
      */
     public function makeKeycard(Dimensions $dimensions, KeycardValueCounts $keycardValueCounts): Keycard
     {
+        $this->checkValueCounts($dimensions, $keycardValueCounts);
+
         $color = $this->makeRandomColor();
         $keycardGrid = $this->makeKeycardGrid($dimensions, $keycardValueCounts, $color);
 
         return new Keycard($color, $keycardGrid);
+    }
+
+    /**
+     * @param Dimensions         $dimensions
+     * @param KeycardValueCounts $keycardValueCounts
+     *
+     * @throws KeycardException if the number of values exceeds the size of the grid
+     */
+    private function checkValueCounts(Dimensions $dimensions, KeycardValueCounts $keycardValueCounts): void
+    {
+        $area = $dimensions->getArea();
+        $totalCount = $keycardValueCounts->getTotalCount() + self::STARTING_COLOR_MODIFIER;
+
+        if ($totalCount > $area) {
+            throw new KeycardException('The number of values exceeds the size of the grid.');
+        }
     }
 
     /**

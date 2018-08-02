@@ -12,6 +12,9 @@ class CardGrid
     /** @var Grid */
     private $grid;
 
+    /** @var Dimensions */
+    private $dimensions;
+
     /**
      * Create a new card grid instance.
      *
@@ -24,6 +27,7 @@ class CardGrid
         $this->checkValues($grid->getValues());
 
         $this->grid = $grid;
+        $this->dimensions = $grid->getDimensions();
     }
 
     /**
@@ -33,7 +37,7 @@ class CardGrid
      */
     public function getDimensions(): Dimensions
     {
-        return $this->grid->getDimensions();
+        return $this->dimensions;
     }
 
     /**
@@ -80,9 +84,7 @@ class CardGrid
      */
     private function checkX(int $x): void
     {
-        $dimensions = $this->grid->getDimensions();
-
-        if (!$dimensions->isValidX($x)) {
+        if (!$this->dimensions->isValidX($x)) {
             throw new CardException('X value out of bounds.');
         }
     }
@@ -94,9 +96,7 @@ class CardGrid
      */
     private function checkY(int $y): void
     {
-        $dimensions = $this->grid->getDimensions();
-
-        if (!$dimensions->isValidY($y)) {
+        if (!$this->dimensions->isValidY($y)) {
             throw new CardException('Y value out of bounds.');
         }
     }

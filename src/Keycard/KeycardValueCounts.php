@@ -66,6 +66,16 @@ class KeycardValueCounts
     }
 
     /**
+     * Get the total count of the keycard value counts.
+     *
+     * @return int
+     */
+    public function getTotalCount(): int
+    {
+        return $this->redsCount + $this->bluesCount + $this->assassinsCount;
+    }
+
+    /**
      * @throws KeycardException if the count is a negative integer
      */
     private function checkCount(int $count): void

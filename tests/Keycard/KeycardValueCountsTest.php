@@ -58,4 +58,11 @@ final class KeycardValueCountsTest extends TestCase
 
         $this->assertEquals(1, $keycardValueCounts->getAssassinsCount());
     }
+
+    public function testItGetsTheTotalCount(): void
+    {
+        $keycardValueCounts = new KeycardValueCounts(8, 8, 1);
+
+        $this->assertEquals(17, $keycardValueCounts->getTotalCount());
+    }
 }

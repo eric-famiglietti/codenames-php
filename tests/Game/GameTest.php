@@ -56,8 +56,8 @@ final class GameTest extends TestCase
 
         $this->keycardValueCounts = new KeycardValueCounts(8, 8, 1);
 
-        $keycardFactory = new KeycardFactory();
-        $this->keycard = $keycardFactory->makeKeycard($dimensions, $this->keycardValueCounts);
+        $keycardFactory = new KeycardFactory($dimensions, $this->keycardValueCounts);
+        $this->keycard = $keycardFactory->makeKeycard();
 
         $dictionary = new Dictionary();
         $deckFactory = new DeckFactory($dictionary);
@@ -75,8 +75,8 @@ final class GameTest extends TestCase
 
         $teams = $this->teams;
         $dimensions = new Dimensions(6, 6);
-        $keycardFactory = new KeycardFactory();
-        $keycard = $keycardFactory->makeKeycard($dimensions, $this->keycardValueCounts);
+        $keycardFactory = new KeycardFactory($dimensions, $this->keycardValueCounts);
+        $keycard = $keycardFactory->makeKeycard();
         $cardGrid = $this->cardGrid;
 
         new Game($teams, $keycard, $cardGrid);

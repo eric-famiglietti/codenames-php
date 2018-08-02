@@ -9,7 +9,7 @@ use Codenames\Color\ColorValues;
 use Codenames\Dimension\Dimensions;
 use Codenames\Grid\Grid;
 
-class KeycardFactory
+class KeycardFactory implements KeycardFactoryInterface
 {
     /** @var array */
     const COLOR_VALUES = [ColorValues::RED, ColorValues::BLUE];
@@ -20,22 +20,37 @@ class KeycardFactory
     /** @var int */
     const STARTING_COLOR_MODIFIER = 1;
 
+    /** @var Dimensions */
+    private $dimensions;
+
+    /** @var KeycardValueCounts */
+    private $keycardValueCounts;
+
     /**
-     * Create a new keycard instance.
+     * Create a new keycard factory instance.
      *
      * @param Dimensions         $dimensions
      * @param KeycardValueCounts $keycardValueCounts
      *
-     * @return Keycard
-     *
      * @throws KeycardException if the number of values exceeds the size of the grid
      */
-    public function makeKeycard(Dimensions $dimensions, KeycardValueCounts $keycardValueCounts): Keycard
+    public function __construct(Dimensions $dimensions, KeycardValueCounts $keycardValueCounts)
     {
         $this->checkValueCounts($dimensions, $keycardValueCounts);
 
+        $this->dimensions = $dimensions;
+        $this->keycardValueCounts = $keycardValueCounts;
+    }
+
+    /**
+     * Create a new keycard instance.
+     *
+     * @return Keycard
+     */
+    public function makeKeycard(): Keycard
+    {
         $color = $this->makeRandomColor();
-        $keycardGrid = $this->makeKeycardGrid($dimensions, $keycardValueCounts, $color);
+        $keycardGrid = $this->makeKeycardGrid($color);
 
         return new Keycard($color, $keycardGrid);
     }
@@ -67,33 +82,29 @@ class KeycardFactory
     }
 
     /**
-     * @param Dimensions         $dimensions
-     * @param KeycardValueCounts $keycardValueCounts
-     * @param Color              $color
+     * @param Color $color
      *
      * @return KeycardGrid
      */
-    private function makeKeycardGrid(Dimensions $dimensions, KeycardValueCounts $keycardValueCounts, Color $color): KeycardGrid
+    private function makeKeycardGrid(Color $color): KeycardGrid
     {
-        $values = $this->makeValues($dimensions);
-        $values = $this->populateValues($values, $keycardValueCounts, $color);
+        $values = $this->makeValues();
+        $values = $this->populateValues($values, $color);
 
-        $grid = $this->makeGrid($dimensions, $values);
+        $grid = $this->makeGrid($values);
 
         return new KeycardGrid($grid);
     }
 
     /**
-     * @param Dimensions $dimensions
-     *
      * @return array
      */
-    private function makeValues(Dimensions $dimensions): array
+    private function makeValues(): array
     {
         $values = [];
 
-        foreach (range(0, $dimensions->getWidth() - 1) as $x) {
-            foreach (range(0, $dimensions->getHeight() - 1) as $y) {
+        foreach (range(0, $this->dimensions->getWidth() - 1) as $x) {
+            foreach (range(0, $this->dimensions->getHeight() - 1) as $y) {
                 $values[$x][$y] = self::DEFAULT_GRID_VALUE;
             }
         }
@@ -102,46 +113,44 @@ class KeycardFactory
     }
 
     /**
-     * @param array              $values
-     * @param KeycardValueCounts $keycardValueCounts
-     * @param Color              $color
+     * @param array $values
+     * @param Color $color
      *
      * @return array
      */
-    private function populateValues(array $values, KeycardValueCounts $keycardValueCounts, Color $color): array
+    private function populateValues(array $values, Color $color): array
     {
-        $redsCount = $this->calculateRedsCount($color, $keycardValueCounts);
-        $bluesCount = $this->calculateBluesCount($color, $keycardValueCounts);
+        $redsCount = $this->calculateRedsCount($color);
+        $bluesCount = $this->calculateBluesCount($color);
+        $assassinsCount = $this->keycardValueCounts->getAssassinsCount();
 
         $values = $this->placeValuesRandomly($values, KeycardValues::RED, $redsCount);
         $values = $this->placeValuesRandomly($values, KeycardValues::BLUE, $bluesCount);
-        $values = $this->placeValuesRandomly($values, KeycardValues::ASSASSIN, $keycardValueCounts->getAssassinsCount());
+        $values = $this->placeValuesRandomly($values, KeycardValues::ASSASSIN, $assassinsCount);
 
         return $values;
     }
 
     /**
-     * @param Color              $color
-     * @param KeycardValueCounts $keycardValueCounts
+     * @param Color $color
      *
      * @return int
      */
-    private function calculateRedsCount(Color $color, KeycardValueCounts $keycardValueCounts): int
+    private function calculateRedsCount(Color $color): int
     {
-        $redsCount = $keycardValueCounts->getRedsCount();
+        $redsCount = $this->keycardValueCounts->getRedsCount();
 
         return $color->isRed() ? $redsCount : $redsCount + self::STARTING_COLOR_MODIFIER;
     }
 
     /**
-     * @param Color              $color
-     * @param KeycardValueCounts $keycardValueCounts
+     * @param Color $color
      *
      * @return int
      */
-    private function calculateBluesCount(Color $color, KeycardValueCounts $keycardValueCounts): int
+    private function calculateBluesCount(Color $color): int
     {
-        $bluesCount = $keycardValueCounts->getBluesCount();
+        $bluesCount = $this->keycardValueCounts->getBluesCount();
 
         return $color->isBlue() ? $bluesCount : $bluesCount + self::STARTING_COLOR_MODIFIER;
     }
@@ -183,13 +192,12 @@ class KeycardFactory
     }
 
     /**
-     * @param Dimensions $dimensions
-     * @param array      $values
+     * @param array $values
      *
      * @return Grid
      */
-    private function makeGrid(Dimensions $dimensions, array $values): Grid
+    private function makeGrid(array $values): Grid
     {
-        return new Grid($dimensions, $values);
+        return new Grid($this->dimensions, $values);
     }
 }

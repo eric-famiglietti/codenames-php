@@ -5,18 +5,32 @@ declare(strict_types=1);
 namespace Codenames\Deck;
 
 use Codenames\Card\Card;
+use Codenames\Dictionary\Dictionary;
 
-class DeckFactory
+class DeckFactory implements DeckFactoryInterface
 {
+    /** @var Dictionary */
+    private $dictionary;
+
+    /**
+     * Create a new deck factory instance.
+     *
+     * @param Dictionary $dictionary
+     */
+    public function __construct(Dictionary $dictionary)
+    {
+        $this->dictionary = $dictionary;
+    }
+
     /**
      * Create a new deck instance.
      *
-     * @param array $words
-     *
      * @return Deck
      */
-    public function makeDeck(array $words): Deck
+    public function makeDeck(): Deck
     {
+        $words = $this->dictionary->getWords();
+
         $cards = $this->makeCards($words);
 
         return new Deck($cards);

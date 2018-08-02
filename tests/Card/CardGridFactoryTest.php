@@ -7,14 +7,12 @@ namespace Tests\Codenames\Card;
 use Codenames\Card\CardGrid;
 use Codenames\Card\CardGridFactory;
 use Codenames\Deck\DeckFactory;
+use Codenames\Dictionary\Dictionary;
 use Codenames\Dimension\Dimensions;
 use PHPUnit\Framework\TestCase;
 
 final class CardGridFactoryTest extends TestCase
 {
-    /** @var array */
-    const WORDS = ['Pear', 'Seagull', 'Apple', 'Banana'];
-
     public function testItCreatesACardGridFactory(): void
     {
         $cardGridFactory = new CardGridFactory();
@@ -26,8 +24,9 @@ final class CardGridFactoryTest extends TestCase
     {
         $cardGridFactory = new CardGridFactory();
         $dimensions = new Dimensions(2, 2);
-        $deckFactory = new DeckFactory();
-        $deck = $deckFactory->makeDeck(self::WORDS);
+        $dictionary = new Dictionary();
+        $deckFactory = new DeckFactory($dictionary);
+        $deck = $deckFactory->makeDeck();
 
         $grid = $cardGridFactory->makeCardGrid($dimensions, $deck);
 

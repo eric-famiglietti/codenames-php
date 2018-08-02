@@ -7,6 +7,7 @@ namespace Tests\Codenames\Game;
 use Codenames\Card\CardGrid;
 use Codenames\Card\CardGridFactory;
 use Codenames\Deck\DeckFactory;
+use Codenames\Dictionary\Dictionary;
 use Codenames\Dimension\Dimensions;
 use Codenames\Game\Game;
 use Codenames\Game\GameException;
@@ -20,34 +21,6 @@ use PHPUnit\Framework\TestCase;
 
 final class GameTest extends TestCase
 {
-    const WORDS = [
-        'closed',
-        'billowy',
-        'example',
-        'partner',
-        'believe',
-        'head',
-        'appliance',
-        'label',
-        'group',
-        'loutish',
-        'government',
-        'fragile',
-        'magical',
-        'class',
-        'story',
-        'shy',
-        'furtive',
-        'frame',
-        'homely',
-        'yielding',
-        'recondite',
-        'pen',
-        'fry',
-        'crayon',
-        'super',
-    ];
-
     /** @var Team */
     private $redTeam;
 
@@ -86,8 +59,9 @@ final class GameTest extends TestCase
         $keycardFactory = new KeycardFactory();
         $this->keycard = $keycardFactory->makeKeycard($dimensions, $this->keycardValueCounts);
 
-        $deckFactory = new DeckFactory();
-        $deck = $deckFactory->makeDeck(self::WORDS);
+        $dictionary = new Dictionary();
+        $deckFactory = new DeckFactory($dictionary);
+        $deck = $deckFactory->makeDeck();
 
         $cardGridFactory = new CardGridFactory();
         $this->cardGrid = $cardGridFactory->makeCardGrid($dimensions, $deck);
